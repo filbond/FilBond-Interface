@@ -1,0 +1,29 @@
+.noteItemLayout {
+	background: radial-gradient(62.58% 62.58% at 18.62% 20.83%, rgba(222, 53, 255, 0.120269) 0%, rgba(222, 53, 255, 6e-05) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.0001) 0%, rgba(0, 0, 0, 0.102082) 100%), #052A61;
+	border-radius: 16px;
+	border: 1px solid #0D407F;
+	display: flex;
+	flex-direction: column;
+	padding: 1em;
+	row-gap: 1em;
+}
+
+.noteItemLayout .titleBar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	font-family: 'Days One', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+}
+
+.noteItemLayout .content {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}

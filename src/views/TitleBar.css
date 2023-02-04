@@ -1,0 +1,17 @@
+.titleBarLayout {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	column-gap: 1em;
+	width: 100%;
+}
+
+.titleBarLayout .rightSideBlock {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	width: fit-content;
+	column-gap: 1em;
+}

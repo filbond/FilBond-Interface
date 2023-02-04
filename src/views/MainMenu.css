@@ -1,0 +1,15 @@
+.mainMenuLayout {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: fit-content;
+	column-gap: 1em;
+}
+
+.mainMenuLayout .menuitem {
+	font-size: 0.86em;
+	font-family: 'Days One', sans-serif;
+	text-transform: uppercase;
+	cursor: pointer;
+}

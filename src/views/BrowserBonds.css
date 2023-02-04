@@ -1,0 +1,34 @@
+.browserBondsLayout {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	row-gap: 1em;
+	margin-top: 3em;
+}
+
+.browserBondsLayout .filterPanel {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-end;
+	width: 100%;
+	margin-top: 1em;
+}
+
+.browserBondsLayout .filterPanel .leftBlock {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	column-gap: 1em;
+}
+
+.browserBondsLayout .content {
+	width: 100%;
+	margin-top: 1em;
+	display: grid;
+	grid-template-columns: auto;
+	grid-column-gap: 1.5em;
+	grid-row-gap: 1.5em;
+}

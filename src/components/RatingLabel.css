@@ -1,0 +1,11 @@
+.ratingLabel {
+	background: #1FCF87;
+	border: 1px solid #36EB9C;
+	border-radius: 8px;
+	font-family: 'Rubik', sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	color: #001744;
+	padding: 4px;
+}

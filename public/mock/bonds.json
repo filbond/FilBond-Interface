@@ -1,0 +1,202 @@
+[
+	{
+		"title": "f20832654",
+		"logo": "/images/bond_logos/mock.png",
+		"site": "AcmeMining",
+		"siteUrl": "http://localhost",
+		"rating": 0,
+		"interestRate": 0.0888,
+		"bondsSold": 0.0777,
+		"bondsForSale": "8880000000000000000",
+		"bondsIssued": "6000000000000000000000",
+		"boundsSoldAmount": "4000000000000000000000",
+		"excessDeposits": "400000000000000000000",
+		"balance": "3000000000000000000000",
+		"owner": "TD7tExDGak3P5YYb7ebyeRyDhkbtYQp4A1",
+		"id": "whoami",
+		"address": "TD7tExDGak3P5YYb7ebyeRyDhkbtYQp4A1",
+		"nodes": [
+			{
+				"title": "f208326541",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			},
+			{
+				"title": "f208326542",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			},
+			{
+				"title": "f208326543",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			},
+			{
+				"title": "f208326544",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			}
+		]
+	},
+	{
+		"title": "f20832655",
+		"logo": "/images/bond_logos/mock.png",
+		"site": "AcmeMining",
+		"siteUrl": "http://localhost",
+		"rating": 0,
+		"interestRate": 0.0888,
+		"bondsSold": 0.0777,
+		"bondsForSale": "8880000000000000000",
+		"bondsIssued": "6000000000000000000000",
+		"boundsSoldAmount": "4000000000000000000000",
+		"excessDeposits": "400000000000000000000",
+		"balance": "3000000000000000000000",
+		"owner": "TD7tExDGak3P5YYb7ebyeRyDhkbtYQp4A1",
+		"id": "whoami1",
+		"address": "TD7tExDGak3P5YYb7ebyeRyDhkbtYQp4A1",
+		"nodes": [
+			{
+				"title": "f208326541",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			},
+			{
+				"title": "f208326542",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			}
+		]
+	},
+	{
+		"title": "f20832656",
+		"logo": "/images/bond_logos/mock.png",
+		"site": "AcmeMining",
+		"siteUrl": "http://localhost",
+		"rating": 0,
+		"interestRate": 0.0888,
+		"bondsSold": 0.0777,
+		"bondsForSale": "8880000000000000000",
+		"bondsIssued": "6000000000000000000000",
+		"boundsSoldAmount": "4000000000000000000000",
+		"excessDeposits": "400000000000000000000",
+		"balance": "3000000000000000000000",
+		"owner": "TD7tExDGak3P5YYb7ebyeRyDhkbtYQp4A1",
+		"id": "whoami2",
+		"address": "TD7tExDGak3P5YYb7ebyeRyDhkbtYQp4A1",
+		"nodes": [
+			{
+				"title": "f208326541",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			},
+			{
+				"title": "f208326542",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			},
+			{
+				"title": "f208326543",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			}
+		]
+	},
+	{
+		"title": "f20832657",
+		"logo": "/images/bond_logos/mock.png",
+		"site": "AcmeMining",
+		"siteUrl": "http://localhost",
+		"rating": 1,
+		"interestRate": 0.0888,
+		"bondsSold": 0.0777,
+		"bondsForSale": "8880000000000000000",
+		"bondsIssued": "6000000000000000000000",
+		"boundsSoldAmount": "4000000000000000000000",
+		"excessDeposits": "400000000000000000000",
+		"balance": "3000000000000000000000",
+		"owner": "TD7tExDGak3P5YYb7ebyeRyDhkbtYQp4A1",
+		"id": "whoami3",
+		"address": "TD7tExDGak3P5YYb7ebyeRyDhkbtYQp4A1",
+		"nodes": [
+			{
+				"title": "f208326541",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			}
+		]
+	},
+	{
+		"title": "1",
+		"logo": "/images/bond_logos/mock.png",
+		"site": "AcmeMining",
+		"siteUrl": "http://localhost",
+		"rating": 2,
+		"interestRate": 0.0888,
+		"bondsSold": 0.0777,
+		"bondsForSale": "8880000000000000000",
+		"bondsIssued": "6000000000000000000000",
+		"boundsSoldAmount": "4000000000000000000000",
+		"excessDeposits": "400000000000000000000",
+		"balance": "3000000000000000000000",
+		"owner": "TD7tExDGak3P5YYb7ebyeRyDhkbtYQp4A1",
+		"id": "whoami4",
+		"address": "TD7tExDGak3P5YYb7ebyeRyDhkbtYQp4A1",
+		"nodes": [
+			{
+				"title": "f208326541",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			},
+			{
+				"title": "f208326542",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			},
+			{
+				"title": "f208326543",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			},
+			{
+				"title": "f208326544",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			},
+			{
+				"title": "f208326545",
+				"rating": 0,
+				"adjPower": 150.99,
+				"successRate": 0.91,
+				"earned": 88.1
+			}
+		]
+	}
+]

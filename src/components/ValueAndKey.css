@@ -1,0 +1,25 @@
+.valueAndKeyLayout {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: fit-content;
+	row-gap: 0.25em;
+}
+
+.valueAndKeyLayout .value {
+	font-family: 'Inter', sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	color: #F8FAFF;
+}
+
+.valueAndKeyLayout .key {
+	font-family: 'Inter', sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 12px;
+	color: #ABB7CA;
+	text-transform: capitalize;
+}

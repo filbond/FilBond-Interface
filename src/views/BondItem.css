@@ -1,0 +1,56 @@
+.bondItemLayout {
+	background: radial-gradient(62.58% 62.58% at 18.62% 20.83%, rgba(222, 53, 255, 0.120269) 0%, rgba(222, 53, 255, 6e-05) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.0001) 0%, rgba(0, 0, 0, 0.102082) 100%), #052A61;
+	border: 1px solid #0D407F;
+	border-radius: 16px;
+	padding: 1em;
+	width: calc(100% - 2em);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	column-gap: 4em;
+	align-items: center;
+}
+
+.bondItemLayout .titleBlock {
+	display: flex;
+	width: fit-content;
+	justify-content: flex-start;
+	align-items: center;
+	column-gap: 1em;
+	flex-direction: row;
+	cursor: pointer;
+}
+
+.bondItemLayout .titleBlock .title {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	row-gap: 0.25em;
+}
+
+.bondItemLayout .titleBlock .title .title {
+	font-family: 'Days One', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	text-transform: capitalize;
+	color: #F8FAFF;
+}
+
+.bondItemLayout .titleBlock .title .site {
+	font-family: 'Rubik', sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 12px;
+	color: #ABB7CA;
+	text-transform: capitalize;
+}
+
+.bondItemLayout .buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	width: fit-content;
+	column-gap: 1em;
+}

@@ -1,38 +1,76 @@
+body {
+  font-size: 14px;
+  font-family: 'Rubik', sans-serif;
+  background: radial-gradient(circle, #001744 0%, #000A29 100%);
+  color: #F8FAFF;
+}
+
+h2 {
+  font-family: 'Days One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 64px;
+  text-transform: capitalize;
+  color: #F8FAFF;
+  margin: 0;
+  padding: 0;
+}
+
+h5 {
+  font-family: 'Days One', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  text-transform: capitalize;
+  color: #F8FAFF;
+  margin: 0;
+  padding: 0;
+}
+
+h6 {
+  font-family: 'Rubik', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #F8FAFF;
+  margin: 0;
+  padding: 0;
+  text-transform: capitalize;
+}
+
+p {
+  line-height: 1;
+}
+
 .App {
-  text-align: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: fit-content;
+  margin-top: 36px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
