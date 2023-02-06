@@ -4,6 +4,7 @@ import { globalUtils } from "./globalUtils";
 export const appController = {
 	_data: null,
 	_accountData: null,
+	_updateTime: 0,
 
 	init: async function () {
 		await this._loadMockData();
@@ -12,9 +13,11 @@ export const appController = {
 	},
 
 	getDataWithAccount: async function (account, callback) {
-		console.debug("getDataWithAccount()...");
+		if (!this._accountData || (new Date()) - this._updateTime > appConfig.updateInterval) {
+			await this._loadMockAccountData();
+			this._updateTime = new Date();
+		}
 
-		await this._loadMockAccountData();
 		return callback(this._accountData);
 	},
 

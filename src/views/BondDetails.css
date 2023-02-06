@@ -43,6 +43,21 @@
 	column-gap: 1em;
 }
 
+.bondDetailsLayout .bondDetailsContent .investmentPanel {
+	background: #052A61;
+	border-radius: 16px;
+	padding: 1em;
+	margin-top: 1em;
+}
+
+.bondDetailsLayout .bondDetailsContent .investmentPanel .labels {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin-bottom: 1em;
+}
+
 .bondDetailsLayout .bondDetailsContent .value {
 	display: flex;
 	flex-direction: row;

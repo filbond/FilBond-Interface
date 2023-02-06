@@ -65,7 +65,8 @@ export const BondItem = ({
 		<div className="buttons">
 			<Button
 				type={appConfig.buttonType.default}
-				label={t("details")} />
+				label={t("details")}
+				onClick={handleClickItem} />
 
 			{!asInvestment && <Button
 				type={appConfig.buttonType.primary}

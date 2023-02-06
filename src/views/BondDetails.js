@@ -4,21 +4,33 @@ import { Button } from "../components/Button";
 import { RatingLabel } from "../components/RatingLabel";
 import { ValueAndKey } from "../components/ValueAndKey";
 import { appConfig } from "../configs/appConfig";
-import { redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { appController } from "../libs/appController";
 import { globalUtils } from "../libs/globalUtils";
 import { Link } from "../components/Link";
 import { NodeItem } from "./NodeItem";
 import BigNumber from "bignumber.js";
+import { useEffect, useState } from "react";
 
 export const BondDetails = ({ allData = null }) => {
 	const t = locale.translate;
 	const { title } = useParams();
-	const bond = allData?.find(item => item.title === title);
+	const [bond, setBond] = useState(allData?.find(item => item.title === title));
 
 	const handleGoBack = _ => {
 		window.history.back();
 	}
+
+	useEffect(() => {
+		appController.getDataWithAccount("", result => {
+			const theBond = result.investments.find(item => item.bondId === bond.id);
+			setBond({
+				...bond,
+				...theBond,
+				invested: true
+			})
+		});
+	}, []);
 
 	return <div className="bondDetailsLayout">
 		<Button
@@ -75,6 +87,35 @@ export const BondDetails = ({ allData = null }) => {
 			</div>
 
 			<div className="column">
+				{bond.invested && <>
+					<div>
+						<h5>{t("yourInvestment")}</h5>
+
+						<div className="investmentPanel">
+							<div className="labels">
+								<ValueAndKey
+									value={globalUtils.formatBigNumber(bond.deposited, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+									keyStr={t("deposited")} />
+
+								<ValueAndKey
+									value={globalUtils.formatBigNumber(bond.bondsIssued, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+									keyStr={t("currentValue")} />
+
+								<ValueAndKey
+									value={globalUtils.formatBigNumber(bond.earned, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+									keyStr={t("earned")} />
+							</div>
+
+							<Button
+								label={t("redeem")}
+								fullWidth />
+						</div>
+					</div>
+
+					<p>&nbsp;</p>
+				</>}
+
+
 				<div>
 					<h5>{t("overview")}</h5>
 

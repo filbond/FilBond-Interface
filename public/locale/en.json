@@ -1,6 +1,7 @@
 {
 	"browseBonds": "Browse Bonds",
 	"yourInvestments": "Your Investments",
+	"yourInvestment": "Your Investment",
 	"yourNodes": "Your Nodes",
 	"yourBondPools": "Your Bond Pools",
 	"all": "all",
@@ -32,5 +33,6 @@
 	"deposited": "deposited",
 	"redeemable": "Redeemable",
 	"redeem": "Redeem",
-	"buyMore": "buy more"
+	"buyMore": "buy more",
+	"currentValue": "current Value"
 }

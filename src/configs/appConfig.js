@@ -57,5 +57,7 @@ export const appConfig = {
 
 	defaultFractionDigits: 2,
 
-	defaultRegion: "en-US"
+	defaultRegion: "en-US",
+
+	updateInterval: 180000 // ms
 }

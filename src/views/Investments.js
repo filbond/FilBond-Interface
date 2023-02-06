@@ -20,7 +20,6 @@ export const Investments = ({ allData = null }) => {
 				...element
 			})
 		});
-		console.debug("newData =", newData);
 
 		return newData;
 	};
@@ -30,8 +29,6 @@ export const Investments = ({ allData = null }) => {
 			setData(combineData(result.investments, allData));
 		});
 	}, []);
-
-	console.debug("data =", data);
 
 	return <div className="investmentsLayout">
 		<div className="titleBar">
