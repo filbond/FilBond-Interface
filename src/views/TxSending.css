@@ -1,0 +1,24 @@
+.txSendingLayout {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0 6px;
+	row-gap: 28px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.loadingAnime {
+		animation: App-logo-spin infinite 1s linear;
+	}
+}
+
+@keyframes App-logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}

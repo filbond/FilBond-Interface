@@ -34,5 +34,16 @@
 	"redeemable": "Redeemable",
 	"redeem": "Redeem",
 	"buyMore": "buy more",
-	"currentValue": "current Value"
+	"currentValue": "current Value",
+	"howManyBonds": "How many Bonds?",
+	"bondPoolBalance": "Bond Pool Balance",
+	"max": "max",
+	"next": "next",
+	"cancel": "cancel",
+	"waitingForWalletConfirmation": "Waiting for wallet confirmation",
+	"success": "Success",
+	"bondBoughtSuccessfully": "Bond Bought Successfully!",
+	"buyAmount": "Buy Amount",
+	"miningCompany": "Mining Company",
+	"bondPoolId": "Bond Pool ID"
 }

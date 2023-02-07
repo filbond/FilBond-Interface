@@ -46,13 +46,15 @@ export const appConfig = {
 		default: 0,
 		primary: 1,
 		small: 2,
-		important: 3
+		important: 3,
+		noBackground: 4
 	},
 
 	currency: {
 		name: "FIL",
 		symbol: "FIL",
-		decimals: 18
+		decimals: 18,
+		logo: "/images/bond_logos/fil.png"
 	},
 
 	defaultFractionDigits: 2,

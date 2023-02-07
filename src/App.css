@@ -17,6 +17,17 @@ h2 {
   padding: 0;
 }
 
+h4 {
+  font-family: 'Days One', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  text-transform: capitalize;
+  color: #F8FAFF;
+  margin: 0;
+  padding: 0;
+}
+
 h5 {
   font-family: 'Days One', sans-serif;
   font-style: normal;
@@ -60,17 +71,10 @@ p {
   margin-top: 36px;
 }
 
-/* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-} */
-
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+#modalContainer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+}

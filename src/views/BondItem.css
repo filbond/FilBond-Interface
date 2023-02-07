@@ -21,32 +21,6 @@
 	cursor: pointer;
 }
 
-.bondItemLayout .titleBlock .title {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
-	row-gap: 0.25em;
-}
-
-.bondItemLayout .titleBlock .title .title {
-	font-family: 'Days One', sans-serif;
-	font-style: normal;
-	font-weight: 400;
-	font-size: 14px;
-	text-transform: capitalize;
-	color: #F8FAFF;
-}
-
-.bondItemLayout .titleBlock .title .site {
-	font-family: 'Rubik', sans-serif;
-	font-style: normal;
-	font-weight: 500;
-	font-size: 12px;
-	color: #ABB7CA;
-	text-transform: capitalize;
-}
-
 .bondItemLayout .buttons {
 	display: flex;
 	flex-direction: row;

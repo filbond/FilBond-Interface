@@ -33,6 +33,21 @@
 	cursor: pointer;
 }
 
+.noBackground {
+	background: transparent;
+	border-radius: 12px;
+	font-family: 'Days One', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	padding: 12px 18px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+}
+
 .buttonImportant {
 	background: linear-gradient(221.16deg, rgba(37, 180, 255, 0.6) 1.63%, rgba(93, 91, 255, 0.6) 51.7%, rgba(199, 36, 255, 0.6) 105.55%);
 	border-radius: 16px;

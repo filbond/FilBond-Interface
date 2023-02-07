@@ -1,0 +1,56 @@
+.buyBondModalLayout {
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.buyBondModalLayout .label {
+	font-family: 'Rubik', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	color: #ABB7CA;
+}
+
+.buyBondModalLayout .modalTitle {
+	font-family: 'Days One', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	text-transform: capitalize;
+	color: #F8FAFF;
+}
+
+.buyBondModalLayout .keyAndValue {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.5em;
+}
+
+.buyBondModalLayout .keyAndValue .key {
+	font-family: 'Rubik', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	color: #ABB7CA;
+	text-transform: capitalize;
+}
+
+.buyBondModalLayout .keyAndValue .value {
+	font-family: 'Rubik', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	text-align: right;
+	color: #F8FAFF;
+}
+
+.buyBondModalLayout .reviewPanel {
+	background: #0D407F;
+	border-radius: 16px;
+	padding: 16px;
+}

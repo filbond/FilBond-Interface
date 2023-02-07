@@ -1,0 +1,33 @@
+.bondTitleLayout {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	column-gap: 1em;
+}
+
+.bondTitleLayout .title {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	row-gap: 0.25em;
+}
+
+.bondTitleLayout .title .title {
+	font-family: 'Days One', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	text-transform: capitalize;
+	color: #F8FAFF;
+}
+
+.bondTitleLayout .title .site {
+	font-family: 'Rubik', sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 12px;
+	color: #ABB7CA;
+	text-transform: capitalize;
+}

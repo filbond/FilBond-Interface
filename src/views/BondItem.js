@@ -1,11 +1,13 @@
 import { Button } from "../components/Button";
 import { ValueAndKey } from "../components/ValueAndKey";
-import { RatingLabel } from "../components/RatingLabel";
+import { Modal } from "../components/Modal";
 import { appConfig } from "../configs/appConfig";
 import { appController } from "../libs/appController";
 import { globalUtils } from "../libs/globalUtils";
 import { locale } from "../libs/locale";
 import "./BondItem.css";
+import { BuyBondsModal } from "./BuyBondsModal";
+import { BondTitle } from "./BondTitle";
 
 export const BondItem = ({
 	bond = null,
@@ -17,19 +19,17 @@ export const BondItem = ({
 		window.location.href = "/bond/" + bond.title;
 	};
 
+	const handleBuy = _ => {
+		appController.showModal(<Modal>
+			<BuyBondsModal data={bond} />
+		</Modal>);
+	};
+
 	return <div className="bondItemLayout">
 		<div
 			className="titleBlock"
 			onClick={handleClickItem}>
-			<img src={bond?.logo} width="24px" />
-
-			<div className="title">
-				<div className="title">{bond.title}</div>
-				<div className="site">{bond.site}</div>
-			</div>
-
-			<RatingLabel label={appController.getRatingLabelWithValue(bond.rating)} />
-
+			<BondTitle bond={bond} />
 			<div>❯</div>
 		</div>
 
@@ -70,7 +70,8 @@ export const BondItem = ({
 
 			{!asInvestment && <Button
 				type={appConfig.buttonType.primary}
-				label={t("buy")} />}
+				label={t("buy")}
+				onClick={handleBuy} />}
 
 			{asInvestment && <Button
 				type={appConfig.buttonType.default}
@@ -78,7 +79,8 @@ export const BondItem = ({
 
 			{asInvestment && <Button
 				type={appConfig.buttonType.primary}
-				label={t("buyMore")} />}
+				label={t("buyMore")}
+				onClick={handleBuy} />}
 		</div>
 	</div>
 };

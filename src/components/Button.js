@@ -24,6 +24,10 @@ export const Button = ({
 				style = "buttonImportant";
 				break;
 
+			case appConfig.buttonType.noBackground:
+				style = "noBackground";
+				break;
+
 			default:
 				style = "buttonDefault";
 				break;
