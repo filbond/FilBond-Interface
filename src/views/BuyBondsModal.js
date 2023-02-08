@@ -43,7 +43,7 @@ export const BuyBondsModal = ({ data = null }) => {
 	};
 
 	const step1View = <div>
-		<div className="modalTitle">{t("buyBonds")}&nbsp;{(indexOfSteps + 1) + "/" + steps.length}</div>
+		<div className="modalTitle">{t("buyBonds")}&nbsp;1/2</div>
 
 		<p />
 

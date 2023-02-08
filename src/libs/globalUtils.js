@@ -15,6 +15,11 @@ export const globalUtils = {
 		}
 	},
 
+	nodeStatus: {
+		inactive: 0,
+		actived: 1
+	},
+
 	loadJson: async function (url) {
 		return await (await fetch(url)).json();
 	},

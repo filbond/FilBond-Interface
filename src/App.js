@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { appController } from './libs/appController';
@@ -7,6 +7,8 @@ import { BrowserBonds } from './views/BrowserBonds';
 import { BondDetails } from "./views/BondDetails";
 import { TitleBar } from './views/TitleBar';
 import { Investments } from './views/Investments';
+import { Nodes } from './views/Nodes';
+import { Footer } from './views/Footer';
 
 function App() {
   const [initiated, setInitiated] = useState(false);
@@ -32,8 +34,11 @@ function App() {
           <Route path="/" element={<BrowserBonds data={data} />} />
           <Route path="/bond/:title" element={<BondDetails allData={data} />} />
           <Route path="/investments" element={<Investments allData={data} />} />
+          <Route path="/nodes" element={<Nodes />} />
         </Routes>
       </BrowserRouter>
+
+      <Footer />
     </div>
   </div>;
 }

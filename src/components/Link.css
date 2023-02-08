@@ -17,3 +17,11 @@
 	width: fit-content;
 	text-decoration: none;
 }
+
+.linkStyleWithoutBackground {
+	background: none;
+	border: none;
+	box-shadow: none;
+	padding: 0;
+	margin: 0;
+}

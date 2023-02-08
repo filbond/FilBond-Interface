@@ -1,0 +1,41 @@
+.footerLayout {
+	margin-top: 40px;
+	width: 100%;
+	height: 100px;
+	position: relative;
+	margin-bottom: 100px;
+}
+
+.footerLayout .logo {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.footerLayout .menu {
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	column-gap: 1em;
+}
+
+.footerLayout .medias {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	column-gap: 1em;
+}
+
+.footerLayout .copyRight {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}

@@ -5,6 +5,7 @@ import { globalUtils } from "./globalUtils";
 export const appController = {
 	_data: null,
 	_accountData: null,
+	_nodesData: null,
 	_updateTime: 0,
 	_modalContainer: null,
 
@@ -27,6 +28,11 @@ export const appController = {
 		return callback(this._accountData);
 	},
 
+	getNodesData: async function (callback) {
+		await this._loadMockNodesData();
+		return callback(this._nodesData);
+	},
+
 	getRatingLabelWithValue: function (ratingValue) {
 		return appConfig.rating.find(item => item.value === ratingValue).name || "";
 	},
@@ -47,5 +53,10 @@ export const appController = {
 	_loadMockAccountData: async function () {
 		this._accountData = await globalUtils.loadJson("/mock/me.json");
 		return this._accountData;
+	},
+
+	_loadMockNodesData: async function () {
+		this._nodesData = await globalUtils.loadJson("/mock/nodes.json");
+		return this._nodesData;
 	}
 };

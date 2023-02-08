@@ -45,5 +45,15 @@
 	"bondBoughtSuccessfully": "Bond Bought Successfully!",
 	"buyAmount": "Buy Amount",
 	"miningCompany": "Mining Company",
-	"bondPoolId": "Bond Pool ID"
+	"bondPoolId": "Bond Pool ID",
+	"registerNode": "Register Node",
+	"bondPool": "Bond Pool",
+	"availableFunds": "available Funds",
+	"bondsIssuable": "bonds Issuable",
+	"connectToBondPool": "Connect To Bond Pool",
+	"manage": "manage",
+	"liquidations": "Liquidations",
+	"docs": "Docs",
+	"termsAndConditions": "Terms & Conditions",
+	"copyRight": "Crafted with ❤️ by  the FilDA Team 🌎"
 }

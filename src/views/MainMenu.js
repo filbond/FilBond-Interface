@@ -18,6 +18,10 @@ export const MainMenu = () => {
 				window.location.href = "/investments";
 				break;
 
+			case mainMenuItemLabels[2]:
+				window.location.href = "/nodes";
+				break;
+
 			default:
 				window.location.href = "/";
 				break;

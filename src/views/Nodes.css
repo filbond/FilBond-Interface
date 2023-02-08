@@ -1,0 +1,61 @@
+.nodesLayout {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	row-gap: 1em;
+	margin-top: 3em;
+	width: 100%;
+}
+
+.nodesLayout .titleBar {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.nodesLayout .filterPanel {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-end;
+	width: 100%;
+	margin-top: 1em;
+}
+
+.nodesLayout .nodesContent {
+	width: 100%;
+	display: grid;
+	grid-template-columns: auto auto auto;
+	row-gap: 1em;
+	column-gap: 1em;
+}
+
+.categoryLayout {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	column-gap: 0.5em;
+}
+
+.categoryLayout .title {
+	font-family: 'Days One', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	text-transform: capitalize;
+	color: #F8FAFF;
+}
+
+.categoryLayout .annotation {
+	font-family: 'Rubik', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	color: #F8FAFF;
+	text-transform: capitalize;
+	vertical-align: middle;
+}

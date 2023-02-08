@@ -1,0 +1,37 @@
+.categoryFilterLayout {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	row-gap: 0.5em;
+}
+
+.categoryFilterLayout .content {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	column-gap: 0.5em;
+}
+
+.categoryFilterLayout .content .category {
+	background: linear-gradient(0deg, rgba(227, 85, 255, 0.1), rgba(227, 85, 255, 0.1)), linear-gradient(180deg, #08326D 0%, #0E4281 100%);
+	border: 1px solid #32578A;
+	box-shadow: inset 0px 0px 0px 8px rgba(232, 235, 243, 0.03);
+	border-radius: 12px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 8px;
+	width: fit-content;
+	height: 100%;
+	cursor: pointer;
+}
+
+.categoryFilterLayout .content .categorySelected {
+	background: linear-gradient(221.16deg, rgba(37, 180, 255, 0.6) 1.63%, rgba(93, 91, 255, 0.6) 51.7%, rgba(199, 36, 255, 0.6) 105.55%);
+	box-shadow: inset 0px 0px 0px 8px rgba(232, 235, 243, 0.03);
+	border-radius: 12px;
+	border: 1px solid;
+	border-image-source: linear-gradient(221.16deg, #25B4FF 1.63%, #5D5BFF 51.7%, #C724FF 105.55%);
+}

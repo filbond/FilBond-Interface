@@ -42,6 +42,19 @@ export const appConfig = {
 		}
 	],
 
+	sortNodesBy: [
+		{
+			label: "Interest Earned",
+			order: globalUtils.order.DESC,
+			value: 0
+		},
+		{
+			label: "Interest Earned",
+			order: globalUtils.order.ASCE,
+			value: 1
+		}
+	],
+
 	buttonType: {
 		default: 0,
 		primary: 1,
