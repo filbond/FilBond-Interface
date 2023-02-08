@@ -55,5 +55,11 @@
 	"liquidations": "Liquidations",
 	"docs": "Docs",
 	"termsAndConditions": "Terms & Conditions",
-	"copyRight": "Crafted with ❤️ by  the FilDA Team 🌎"
+	"copyRight": "Crafted with ❤️ by  the FilDA Team 🌎",
+	"enterNodeId": "Enter Node ID",
+	"registerNodeText1": "Please enter the ID of the Filecoin node you wish to register in FilBOND.",
+	"registerNodeText2": "If the address is wrong the process wont work, so make sure you enter the right one. ",
+	"paste": "paste",
+	"generateSmartContract": "Generate Smart Contract",
+	"generateSmartContractText": "We’re generating the smart contract address that will allow your node to interact with the FilDA platform. This might take up to a couple of minutes..."
 }

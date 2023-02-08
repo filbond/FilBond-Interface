@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "../components/Button";
 import { CategoryFilter } from "../components/CategoryFilter";
+import { Modal } from "../components/Modal";
 import { RatingLabel } from "../components/RatingLabel";
 import { SortTrigger } from "../components/SortTrigger";
 import { appConfig } from "../configs/appConfig";
@@ -8,6 +9,7 @@ import { appController } from "../libs/appController";
 import { locale } from "../libs/locale";
 import { NodeCard } from "./NodeCard";
 import "./Nodes.css";
+import { RegisterNodeModal } from "./RegisterNodeModal";
 
 export const Nodes = () => {
 	const t = locale.translate;
@@ -59,13 +61,20 @@ export const Nodes = () => {
 		});
 	}, []);
 
+	const handleRegisterNode = _ => {
+		appController.showModal(<Modal>
+			<RegisterNodeModal />
+		</Modal>);
+	};
+
 	return <div className="nodesLayout">
 		<div className="titleBar">
 			<h2>{t("yourNodes")}&nbsp;({nodes.length})</h2>
 
 			<Button
 				type={appConfig.buttonType.primary}
-				label={t("registerNode")} />
+				label={t("registerNode")}
+				onClick={handleRegisterNode} />
 		</div>
 
 		<div className="filterPanel">

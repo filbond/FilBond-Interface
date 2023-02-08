@@ -1,7 +1,10 @@
 import { locale } from "../libs/locale";
 import "./TxSending.css";
 
-export const TxSending = () => {
+export const TxSending = ({
+	label = "",
+	text = ""
+}) => {
 	const t = locale.translate;
 
 	return <div className="txSendingLayout">
@@ -11,8 +14,12 @@ export const TxSending = () => {
 			width="48px"
 			alt="loading" />
 
-		<h5>{t("waitingForWalletConfirmation")}</h5>
-		
-		<h6>{t("waitingForWalletConfirmation")}</h6>
+		<h5 style={{ textAlign: "center" }}>
+			{label || t("waitingForWalletConfirmation")}
+		</h5>
+
+		<h6 style={{ textAlign: "center" }}>
+			{text || t("waitingForWalletConfirmation")}
+		</h6>
 	</div>
 };

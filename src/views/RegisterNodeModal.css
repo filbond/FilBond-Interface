@@ -1,0 +1,24 @@
+.registerNodeModalLayout {
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	justify-content: flex-start;
+	align-items: flex-start;
+	max-width: 344px;
+}
+
+.registerNodeModalLayout .text {
+	font-family: 'Rubik', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	color: #F8FAFF;
+}
+
+.registerNodeModalLayout .label {
+	font-family: 'Rubik', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	color: #ABB7CA;
+}
