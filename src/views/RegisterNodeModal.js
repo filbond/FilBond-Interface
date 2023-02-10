@@ -1,19 +1,25 @@
 import { useState, useEffect } from "react";
 import { Button } from "../components/Button";
 import { InputPasteble } from "../components/InputPasteble";
+import { SteppedViews } from "../components/SteppedViews";
 import { appConfig } from "../configs/appConfig";
 import { appController } from "../libs/appController";
 import { locale } from "../libs/locale";
 import "./RegisterNodeModal.css";
 import { TxSending } from "./TxSending";
 
+const keyOfRegisteringNodeViews = {
+	index: 0,
+	process: 1
+};
+
 export const RegisterNodeModal = () => {
 	const t = locale.translate;
-	const [indexOfSteps, setIndexOfSteps] = useState(0);
-	const [steps, setSteps] = useState([]);
+	const [views, setViews] = useState([]);
+	const [currentView, setCurrentView] = useState(keyOfRegisteringNodeViews.index);
 
 	const handleNext = _ => {
-		setIndexOfSteps(1);
+		setCurrentView(keyOfRegisteringNodeViews.process);
 	};
 
 	const handleClose = _ => {
@@ -58,10 +64,16 @@ export const RegisterNodeModal = () => {
 		text={t("generateSmartContractText")} />
 
 	useEffect(() => {
-		setSteps([step1View, step2View]);
+		const map = [];
+		map[keyOfRegisteringNodeViews.index] = step1View;
+		map[keyOfRegisteringNodeViews.process] = step2View;
+		setViews(map);
 	}, []);
 
 	return <div className="registerNodeModalLayout">
-		{steps[indexOfSteps]}
+		{/* {steps[indexOfSteps]} */}
+		<SteppedViews
+			views={views}
+			keyOfView={currentView} />
 	</div>
 };

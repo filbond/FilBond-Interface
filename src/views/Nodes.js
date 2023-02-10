@@ -89,7 +89,9 @@ export const Nodes = () => {
 
 		<div className="nodesContent">
 			{nodes.map(node => {
-				return <NodeCard node={node} />
+				return <NodeCard
+					key={node.id}
+					node={node} />
 			})}
 		</div>
 	</div>
