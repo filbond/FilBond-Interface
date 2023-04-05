@@ -1,27 +1,21 @@
 .linkStyle {
-	background: linear-gradient(0deg, rgba(227, 85, 255, 0.1), rgba(227, 85, 255, 0.1)), linear-gradient(180deg, #08326D 0%, #0E4281 100%);
-	border: 1px solid #32578A;
-	box-shadow: inset 0px 0px 0px 8px rgba(232, 235, 243, 0.03);
-	border-radius: 10px;
-	font-family: 'Days One', sans-serif;
 	font-style: normal;
-	font-weight: 400;
-	font-size: 10px;
-	text-transform: uppercase;
-	color: #FFFFFF;
-	cursor: pointer;
-	padding: 8px 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: fit-content;
+	font-weight: 700;
+	font-size: 14px;
+	letter-spacing: 0.02em;
+	color: #F7F6F9;
 	text-decoration: none;
+	text-transform: capitalize;
 }
 
-.linkStyleWithoutBackground {
-	background: none;
-	border: none;
-	box-shadow: none;
-	padding: 0;
-	margin: 0;
+.linkStylePrimary {
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14px;
+	letter-spacing: 0.02em;
+	color: #CCB7F8;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 7px;
 }

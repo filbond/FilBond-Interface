@@ -4,10 +4,15 @@ export const Link = ({
 	children = null,
 	url = "",
 	openNewWindow = false,
-	asText = false
+	bigger = false,
+	primary = false
 }) => {
 	return <a
 		href={url}
-		className={"linkStyle" + (asText ? " linkStyleWithoutBackground" : "")}
-		target={openNewWindow ? "_blank" : "_self"}>{children}</a>
+		className={"linkStyle" + (primary ? " linkStylePrimary" : "")}
+		target={openNewWindow ? "_blank" : "_self"}
+		style={{
+			fontSize: bigger ? "16px" : "auto"
+		}}
+		rel="noreferrer">{children}</a>
 };

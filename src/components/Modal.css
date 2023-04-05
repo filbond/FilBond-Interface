@@ -8,10 +8,17 @@
 }
 
 .modalContainerLayout .modalView {
-	background: radial-gradient(62.58% 62.58% at 18.62% 20.83%, rgba(222, 53, 255, 0.120269) 0%, rgba(222, 53, 255, 6e-05) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.0001) 0%, rgba(0, 0, 0, 0.102082) 100%), #052A61;
-	border: 1px solid #0D407F;
-	box-shadow: inset 0px 0px 0px 8px rgba(232, 235, 243, 0.02);
-	backdrop-filter: blur(5px);
-	border-radius: 24px;
-	padding: 24px 18px;
+	position: relative;
+	padding: 24px;
+	isolation: isolate;
+	min-width: 312px;
+	background: radial-gradient(100% 478.79% at 100% -3.42%, #413B6F 0%, #2C2847 100%);
+	box-shadow: 0px 10px 10px -3px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.modalContainerLayout .modalView .closeButton {
+	position: absolute;
+	top: 13px;
+	right: 13px;
+	cursor: pointer;
 }

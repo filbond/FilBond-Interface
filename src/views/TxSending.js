@@ -14,12 +14,14 @@ export const TxSending = ({
 			width="48px"
 			alt="loading" />
 
-		<h5 style={{ textAlign: "center" }}>
-			{label || t("waitingForWalletConfirmation")}
-		</h5>
+		<h3 style={{ textAlign: "center" }}>
+			{label || t("pleaseWait")}
+		</h3>
 
-		<h6 style={{ textAlign: "center" }}>
+		<div
+			className="modalText"
+			style={{ textAlign: "center" }}>
 			{text || t("waitingForWalletConfirmation")}
-		</h6>
+		</div>
 	</div>
 };

@@ -1,22 +1,26 @@
 .sortTriggerLayout {
 	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
-	row-gap: 0.5em;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.5em;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	letter-spacing: 0.02em;
+	text-transform: capitalize;
 }
 
 .sortTriggerLayout select {
-	background: linear-gradient(0deg, rgba(227, 85, 255, 0.1), rgba(227, 85, 255, 0.1)), linear-gradient(180deg, #08326D 0%, #0E4281 100%);
-	border: 1px solid #32578A;
-	box-shadow: inset 0px 0px 0px 8px rgba(232, 235, 243, 0.03);
-	border-radius: 12px;
+	padding: 8px 10px 8px 12px;
+	background: radial-gradient(100% 599.48% at 100% 0%, #4C4577 0%, #413B6F 100%);
+	box-shadow: 0px 10px 10px -3px rgba(0, 0, 0, 0.1), 0px 2px 2px rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+	border: none;
+	outline: none;
 	font-style: normal;
-	font-weight: 400;
-	font-size: 12px;
-	color: #FFFFFF;
-	padding: 1em;
-	font-family: 'Days One', sans-serif;
-	cursor: pointer;
-	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 16px;
+	letter-spacing: 0.02em;
+	color: #CCB7F8;
+	text-transform: capitalize;
 }

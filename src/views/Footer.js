@@ -7,76 +7,74 @@ import "./Footer.css";
 export const Footer = () => {
 	const t = locale.translate;
 
-	return <div className="footerLayout">
-		<img
-			className="logo"
-			src="/images/logo.png"
-			height="32px"
-			alt="Logo" />
+	return <>
+		<div className="footerLayout">
+			<img
+				className="logo"
+				src="/images/logo.png"
+				height="32px"
+				alt="Logo" />
 
-		<div className="menu">
-			<Link asText>{t("liquidations")}</Link>
+			<div className="menu">
+				<Link asText>{t("liquidations")}</Link>
 
-			<Link asText>
-				<span>FilDA.io&nbsp;</span>
-				<img
-					src="/images/link.png"
-					width="8px"
-					alt="link" />
-			</Link>
+				<Link asText>
+					<span>FilDA.io&nbsp;</span>
+					<img
+						src="/images/link.png"
+						width="8px"
+						alt="link" />
+				</Link>
 
-			<Link asText>
-				<span>{t("docs")}&nbsp;</span>
-				<img
-					src="/images/link.png"
-					width="8px"
-					alt="link" />
-			</Link>
+				<Link asText>
+					<span>{t("docs")}&nbsp;</span>
+					<img
+						src="/images/link.png"
+						width="8px"
+						alt="link" />
+				</Link>
 
-			<Link asText>{t("termsAndConditions")}</Link>
+				<Link asText>{t("termsAndConditions")}</Link>
 
-			<Button
-				type={appConfig.buttonType.default}
-				label={t("registerNode")} />
+				<Button
+					type={appConfig.buttonType.primary}
+					label={t("registerNode")}
+					smallText={true} />
+			</div>
 		</div>
 
-		<div className="medias">
-			<Link asText>
-				<img
-					src="/images/ins.png"
-					width="32px"
-					alt="ins" />
-			</Link>
+		<div className="footerLayout">
+			<div className="medias">
+				<Link asText>
+					<img
+						src="/images/ins.png"
+						width="32px"
+						alt="ins" />
+				</Link>
 
-			<Link asText>
-				<img
-					src="/images/wechat.png"
-					width="32px"
-					alt="wechat" />
-			</Link>
+				<Link asText>
+					<img
+						src="/images/wechat.png"
+						width="32px"
+						alt="wechat" />
+				</Link>
 
-			<Link asText>
-				<img
-					src="/images/twitter.png"
-					width="32px"
-					alt="twitter" />
-			</Link>
+				<Link asText>
+					<img
+						src="/images/twitter.png"
+						width="32px"
+						alt="twitter" />
+				</Link>
 
-			<Link asText>
-				<img
-					src="/images/medium.png"
-					width="32px"
-					alt="medium" />
-			</Link>
+				<Link asText>
+					<img
+						src="/images/github.png"
+						width="32px"
+						alt="github" />
+				</Link>
+			</div>
 
-			<Link asText>
-				<img
-					src="/images/github.png"
-					width="32px"
-					alt="github" />
-			</Link>
+			<div className="copyRight">{t("copyRight")}</div>
 		</div>
-
-		<div className="copyRight">{t("copyRight")}</div>
-	</div>
+	</>
 };

@@ -16,8 +16,12 @@ export const locale = {
 		return true;
 	},
 
-	translate: function (key) {
-		return (locale._strings && key) ? locale._strings[key] : "";
+	translate: function (key, valuesObject = null) {
+		const str = (locale._strings && key) ? locale._strings[key] : "";
+
+		return valuesObject ? str.replace(/\{(\w+)\}/g, (match, key) => {
+			return valuesObject[key] || match;
+		}) : str;
 	},
 
 	_loadStrings: async function () {

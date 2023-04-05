@@ -1,38 +1,50 @@
 .inputPastebleLayout {
-	position: relative;
+	width: 100%;
+}
+
+.inputPastebleLayout .title {
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 14px;
+	text-transform: capitalize;
+	color: #F7F6F9;
+	margin-bottom: 10px;
+}
+
+.inputPastebleLayout .inputBlock {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 4px 4px 4px 12px;
+	gap: 8px;
+	background: linear-gradient(72.48deg, #1E1B3D 0%, #2C2847 100%);
+	box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.4), inset 0px 1px 2px rgba(0, 0, 0, 0.3), inset 0px 10px 10px -3px rgba(0, 0, 0, 0.2);
+	flex: 1 1;
 }
 
 .inputPastebleLayout input {
-	color: #ABB7CA;
+	background-color: transparent;
 	outline: none;
-	background: linear-gradient(180deg, rgba(82, 110, 152, 0) 0%, rgba(82, 110, 152, 0.1) 100%), linear-gradient(0deg, #001744, #001744), linear-gradient(180deg, #001744 0%, #042158 100%);
-	border-radius: 12px;
-	border: 1px solid #0D407F;
-	border-image-source: linear-gradient(0deg, #0D407F, #0D407F), linear-gradient(0deg, rgba(37, 180, 255, 0.1), rgba(37, 180, 255, 0.1));
-	padding: 10px 10px 10px 52px;
-	appearance: textfield;
-	font-family: 'Inter', sans-serif;
+	border: none;
+	outline: none;
+	width: 100%;
+	font-family: 'Urbanist', sans-serif;
 	font-style: normal;
 	font-weight: 500;
 	font-size: 14px;
-	width: calc(100% - 62px);
+	letter-spacing: 0.02em;
+	color: #A5A0BB;
+	padding: 17px 12px;
 }
 
 .inputPastebleLayout .paste {
-	background: linear-gradient(0deg, rgba(227, 85, 255, 0.1), rgba(227, 85, 255, 0.1)), linear-gradient(180deg, #08326D 0%, #0E4281 100%);
-	border: 1px solid #32578A;
-	box-shadow: inset 0px 0px 0px 8px rgba(232, 235, 243, 0.03);
-	border-radius: 10px;
-	outline: none;
-	font-family: 'Days One', sans-serif;
 	font-style: normal;
-	font-weight: 400;
-	font-size: 10px;
-	text-transform: uppercase;
-	color: #FFFFFF;
-	position: absolute;
-	right: 2px;
-	top: 4px;
-	padding: 8px 12px;
+	font-weight: 700;
+	font-size: 16px;
+	letter-spacing: 0.02em;
+	color: #CCB7F8;
+	padding: 16px;
+	text-transform: capitalize;
 	cursor: pointer;
 }

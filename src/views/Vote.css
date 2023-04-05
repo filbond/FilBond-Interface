@@ -1,0 +1,28 @@
+.voteLayout {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	row-gap: 24px;
+	margin: 76px 0 48px 0;
+	width: fit-content;
+}
+
+.voteLayout .titleBar {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: baseline;
+}
+
+.voteLayout .list {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	flex-wrap: wrap;
+	height: 300px;
+	justify-content: flex-start;
+	align-items: flex-start;
+	width: fit-content;
+}

@@ -1,21 +1,18 @@
 .footerLayout {
-	margin-top: 40px;
 	width: 100%;
-	height: 100px;
 	position: relative;
-	margin-bottom: 100px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin: 1em 0;
 }
 
 .footerLayout .logo {
-	position: absolute;
-	left: 0;
-	top: 0;
+	/*  */
 }
 
 .footerLayout .menu {
-	position: absolute;
-	right: 0;
-	top: 0;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
@@ -24,9 +21,6 @@
 }
 
 .footerLayout .medias {
-	position: absolute;
-	left: 0;
-	bottom: 0;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
@@ -35,7 +29,9 @@
 }
 
 .footerLayout .copyRight {
-	position: absolute;
-	right: 0;
-	bottom: 0;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	letter-spacing: 0.02em;
+	color: #F7F6F9;
 }

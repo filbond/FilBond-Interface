@@ -1,0 +1,15 @@
+.popupMenuLayout {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.popupMenuLayout .popupContent {
+	position: relative;
+}
+
+.popupMenuLayout .popupContent .menuBox {
+	position: absolute;
+	top: 0;
+	right: 0;
+}

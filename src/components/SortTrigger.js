@@ -9,7 +9,7 @@ export const SortTrigger = ({
 	const [indexSelected, setIndexSelected] = useState(0);
 
 	return <div className="sortTriggerLayout">
-		{title && <h6>{title}</h6>}
+		{title && <div>{title}</div>}
 
 		<select defaultValue={indexSelected}>
 			{options.map((option, index) => {

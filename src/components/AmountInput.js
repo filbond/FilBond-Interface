@@ -1,4 +1,3 @@
-import BigNumber from "bignumber.js";
 import { useState } from "react";
 import { locale } from "../libs/locale";
 import "./AmountInput.css";
@@ -7,9 +6,10 @@ export const AmountInput = ({
 	name = "",
 	symbol = "",
 	logo = "",
-	decimals = 18,
-	max = "0",
-	pushValue = () => { }
+	max = 0,
+	showMax = true,
+	onChange = () => { },
+	maxTitle = null
 }) => {
 	const t = locale.translate;
 	const [value, setValue] = useState(0);
@@ -22,29 +22,40 @@ export const AmountInput = ({
 		}
 
 		setValue(val);
-		pushValue(val);
+		onChange(val);
 	};
 
 	const handleMax = _ => {
-		const val = BigNumber(max).shiftedBy(-decimals).toNumber();
+		const val = max;
 		setValue(val);
-		pushValue(val);
+		onChange(val);
 	};
 
 	return <div className="amountInputLayout">
-		<img
-			className="amountInputLogo"
-			src={logo}
-			width="32px" />
+		<div className="titleLine">
+			<div className="name">{name}</div>
 
-		<input
-			className="amountInputStyle"
-			type="number"
-			onChange={handleChange}
-			value={value} />
+			{max > 0 && showMax && <div className="balance">{maxTitle ?? t("wallet")}:&nbsp;{max}{symbol ? (" " + symbol) : ""}</div>}
+		</div>
 
-		{max && <button
-			className="maxButton"
-			onClick={handleMax}>{t("max")}</button>}
+		<div className="inputBlock">
+			{logo && <img
+				className="amountInputLogo"
+				src={logo}
+				width="32px"
+				alt="logo" />}
+
+			<input
+				className="amountInputStyle"
+				type="number"
+				onChange={handleChange}
+				value={value} />
+
+			{max > 0 && <div
+				className="maxButton"
+				onClick={handleMax}>
+				{t("max")}
+			</div>}
+		</div>
 	</div>
 }
