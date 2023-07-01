@@ -11,7 +11,6 @@ export const nodesCaller = {
 			call.context = { index }
 			calls.push(call);
 		}
-		console.debug("calls =", calls);
 
 		return calls;
 	},
@@ -52,8 +51,6 @@ export const nodesCaller = {
 		console.debug("nodes =", nodes);
 	},
 	makeCallsForSingleNode: async function (node, chainId) {
-		console.debug("makeCallsForSingleNode()", node, chainId);
-
 		const abi = await globalUtils.loadJson(appConfig.markets.networks[chainId].minerSmartOwner.abi);
 		const call = {
 			reference: 'node_' + node.id,

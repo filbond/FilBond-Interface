@@ -101,11 +101,17 @@ export const appController = {
 		if (callback) callback(this._lendingPoolData);
 	},
 
-	getNodesData: async function (callback) {
+	getNodesData: async function (callback, nodesSaved = null) {
 		if (callback) this._updateNodesCallback = callback;
 
-		this._nodesData = this._loadNodesFromLocalStorage(true);
+		if (nodesSaved) {
+			this._nodesData = nodesSaved;
+		} else {
+			this._nodesData = this.loadNodesFromLocalStorage(true);
+		}
+
 		await this._getNodesDataFromContracts(this._nodesData);
+
 		return callback(this._nodesData);
 	},
 
@@ -436,7 +442,7 @@ export const appController = {
 	},
 
 	saveNode: function (id, owner, filAddressOfOwner, idAddress, oldOwnerIdAddress) {
-		const nodesStored = this._loadNodesFromLocalStorage();
+		const nodesStored = this.loadNodesFromLocalStorage();
 		nodesStored.push({
 			id,
 			owner: {
@@ -450,7 +456,7 @@ export const appController = {
 	},
 
 	removeNode: function (id) {
-		const stored = this._loadNodesFromLocalStorage();
+		const stored = this.loadNodesFromLocalStorage();
 		if (stored) {
 			const idx = stored.findIndex(item => item.id === id);
 
@@ -555,7 +561,7 @@ export const appController = {
 	},
 
 	_checkNodeIdStored: function (id) {
-		const stored = this._loadNodesFromLocalStorage();
+		const stored = this.loadNodesFromLocalStorage();
 		return stored.find(item => item.id === id);
 	},
 
@@ -605,7 +611,7 @@ export const appController = {
 		return this._accountData;
 	},
 
-	_loadNodesFromLocalStorage: function () {
+	loadNodesFromLocalStorage: function () {
 		let res = [];
 		try {
 			const read = window.localStorage.getItem(globalUtils.constants.NODES);

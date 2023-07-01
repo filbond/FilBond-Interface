@@ -42,7 +42,9 @@ const Invest = ({
 
 	const handleWithdraw = () => {
 		appController.showModal(<Modal>
-			<WithdrawtModal lendingPool={lendingPool} />
+			<WithdrawtModal
+				lendingPool={lendingPool}
+				onDone={onChange} />
 		</Modal>);
 	};
 

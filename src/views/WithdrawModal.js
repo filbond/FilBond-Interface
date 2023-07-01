@@ -10,24 +10,37 @@ import { globalUtils } from "../libs/globalUtils";
 import { ValueAndKey } from "../components/ValueAndKey";
 import BigNumber from "bignumber.js";
 import { debounce } from "../libs/debounce";
+import { TxSending } from "./TxSending";
+import { TxDone } from "./TxDone";
+import { TxError } from "./TxError";
 
 const keyOfWithdrawViews = {
 	index: 0,
-	summary: 1
+	summary: 1,
+	process: 2,
+	done: 3,
+	error: 4
 };
 
 export const WithdrawtModal = ({
 	lendingPool = null,
-	onClose = () => { }
+	onClose = () => { },
+	onDone = () => { }
 }) => {
 	const t = locale.translate;
-	const [views, setViews] = useState([]);
 	const [currentView, setCurrentView] = useState(keyOfWithdrawViews.index);
 	const totalDeposited = lendingPool?.balanceOfUnderlying.plus(lendingPool?.earnings);
 	const max = totalDeposited.shiftedBy(-appConfig.currency.decimals).toNumber();
-	const [inputValue, setInputValue] = useState(0);
 	const [inputAmount, setInputAmount] = useState(globalUtils.constants.BIGNUMBER_ZERO);
 	const [gas, setGas] = useState(0);
+	const [txHash, setTxHash] = useState("");
+	const [errMessage, setErrMessage] = useState("");
+
+	const init = () => {
+		setGas(0);
+		setTxHash("");
+		setErrMessage("");
+	};
 
 	const handleSummary = _ => {
 		setCurrentView(keyOfWithdrawViews.summary);
@@ -39,11 +52,16 @@ export const WithdrawtModal = ({
 	};
 
 	const handleWithdraw = () => {
+		setCurrentView(keyOfWithdrawViews.process);
+
 		appController.withdraw(
 			lendingPool.address,
-			handleClose,
-			null,
-			null,
+			tx => setTxHash(tx),
+			() => setCurrentView(keyOfWithdrawViews.done),
+			err => {
+				setErrMessage(err?.message);
+				setCurrentView(keyOfWithdrawViews.error);
+			},
 			inputAmount.toFixed()
 		);
 	};
@@ -60,10 +78,19 @@ export const WithdrawtModal = ({
 	};
 
 	const handleChangeAmountInput = val => {
-		setInputValue(val);
 		setInputAmount(BigNumber(val).shiftedBy(appConfig.currency.decimals));
 
 		debounce.run(updateGas);
+	};
+
+	const handleDone = () => {
+		appController.clearModal();
+		onDone();
+	};
+
+	const handleCancel = () => {
+		init();
+		setCurrentView(keyOfWithdrawViews.index);
 	};
 
 	const step1View = <>
@@ -202,15 +229,19 @@ export const WithdrawtModal = ({
 			onClick={handleClose} />
 	</>
 
-	useEffect(() => {
-		const map = [];
-		map[keyOfWithdrawViews.index] = step1View;
-		map[keyOfWithdrawViews.summary] = summaryView;
-		setViews(map);
-	}, []);
-
 	return <div className="registerNodeModalLayout">
 		{currentView === keyOfWithdrawViews.index && step1View}
+
 		{currentView === keyOfWithdrawViews.summary && summaryView}
+
+		{currentView === keyOfWithdrawViews.process && <TxSending />}
+
+		{currentView === keyOfWithdrawViews.done && <TxDone
+			txHash={txHash}
+			onDone={handleDone} />}
+
+		{currentView === keyOfWithdrawViews.error && <TxError
+			text={errMessage}
+			onCancel={handleCancel} />}
 	</div>
 };

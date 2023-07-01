@@ -28,11 +28,16 @@ export const Nodes = ({
 
 	useEffect(() => {
 		if (chainId > 0) {
-			console.debug("chainId =", chainId);
+			const saved = appController.loadNodesFromLocalStorage();
 
-			appController.getNodesData(res => {
-				setNodes(res);
-			});
+			if (saved) {
+				setNodes([]);
+
+				appController.getNodesData(res => {
+					console.debug("取得了node数据 chainId =", chainId);
+					setNodes(res);
+				}, saved);
+			}
 		}
 	}, [chainId]);
 
@@ -153,7 +158,7 @@ export const Nodes = ({
 				options={appConfig.sortNodesBy} />
 		</div>
 
-		{(!nodes || nodes?.length === 0) && <div className="noNodes">
+		{!nodes && <div className="noNodes">
 			<div style={{
 				display: "flex",
 				flexDirection: "column",
@@ -193,6 +198,8 @@ export const Nodes = ({
 				</div>
 			</div>
 		</div>}
+
+		{nodes?.length === 0 && <div></div>}
 
 		{nodes?.length > 0 && <div className="nodesContent">
 			{nodes?.map(node => {

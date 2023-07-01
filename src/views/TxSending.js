@@ -21,7 +21,7 @@ export const TxSending = ({
 		<div
 			className="modalText"
 			style={{ textAlign: "center" }}>
-			{text || t("waitingForWalletConfirmation")}
+			{text || t("waitingForNodesConfirmation")}
 		</div>
 	</div>
 };
