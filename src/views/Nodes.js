@@ -34,7 +34,6 @@ export const Nodes = ({
 				setNodes([]);
 
 				appController.getNodesData(res => {
-					console.debug("取得了node数据 chainId =", chainId);
 					setNodes(res);
 				}, saved);
 			}
@@ -73,6 +72,10 @@ export const Nodes = ({
 	const handleExportNodeList = () => {
 		appController.exportNodes();
 		setShowPopupMenu(!showPopupMenu);
+	};
+
+	const handleUpdateNode = idx => {
+		// 
 	};
 
 	return <div className="nodesLayout">
@@ -199,16 +202,24 @@ export const Nodes = ({
 			</div>
 		</div>}
 
-		{nodes?.length === 0 && <div></div>}
+		{nodes?.length === 0 && <div className="empty">
+			<img
+				className="loadingAnime"
+				src="/images/loading.png"
+				width="48px"
+				alt="loading" />
+		</div>}
 
 		{nodes?.length > 0 && <div className="nodesContent">
-			{nodes?.map(node => {
+			{nodes?.map((node, index) => {
 				return <NodeCard
+					indexOfNode={index}
 					key={node.id}
 					node={node}
 					currencyBalance={currencyBalance}
 					chainId={chainId}
-					lendingPool={lendingPool} />
+					lendingPool={lendingPool}
+					updateNode={handleUpdateNode} />
 			})}
 		</div>}
 	</div>

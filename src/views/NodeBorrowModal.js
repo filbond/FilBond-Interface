@@ -10,38 +10,53 @@ import { ValueAndKey } from "../components/ValueAndKey";
 import BigNumber from "bignumber.js";
 import { Link } from "../components/Link";
 import { lendingPoolCaller } from "../libs/lendingPoolCaller";
+import { TxSending } from "./TxSending";
+import { TxDone } from "./TxDone";
+import { TxError } from "./TxError";
 
 const keyOfNodeBorrowViews = {
 	step1: 0,
-	step2: 1
+	step2: 1,
+	process: 3,
+	done: 4,
+	error: 5
 };
 
 export const NodeBorrowModal = ({
 	max = 0,
 	lendingPool = null,
 	onClose = () => { },
-	// chainId = 0,
+	onBorrow = () => { },
 	node = null
 }) => {
 	const t = locale.translate;
 	const [currentView, setCurrentView] = useState(keyOfNodeBorrowViews.step1);
 	const [inputValue, setInputValue] = useState(0);
 	const [amount, setAmount] = useState(globalUtils.constants.BIGNUMBER_ZERO);
-	// const lendingPoolAddress = appConfig.markets.networks[chainId].lendingPool.address;
-	// const [nodeBalance, setNodeBalance] = useState(globalUtils.constants.BIGNUMBER_ZERO);
 	const [borrowInterest, setBorrowInterest] = useState(0);
+	const [txHash, setTxHash] = useState("");
+	const [errMessage, setErrMessage] = useState("");
 
-	const handledBorrow = _ => {
-		appController.nodeBorrow(
-			node.owner.hexAddress,
-			null,
-			handleClose,
-			null,
-			amount.toFixed()
-		);
-
+	const init = () => {
 		setInputValue(0);
 		setAmount(globalUtils.constants.BIGNUMBER_ZERO);
+		setTxHash("");
+		setErrMessage("");
+	};
+
+	const handledBorrow = _ => {
+		setCurrentView(keyOfNodeBorrowViews.process);
+
+		appController.nodeBorrow(
+			node.owner.hexAddress,
+			tx => setTxHash(tx),
+			() => setCurrentView(keyOfNodeBorrowViews.done),
+			err => {
+				setErrMessage(err?.message);
+				setCurrentView(keyOfNodeBorrowViews.error);
+			},
+			amount.toFixed()
+		);
 	};
 
 	const handledSummary = () => {
@@ -50,7 +65,12 @@ export const NodeBorrowModal = ({
 
 	const handleClose = _ => {
 		appController.clearModal();
-		onClose();
+		onBorrow();
+	};
+
+	const handleCancel = () => {
+		init();
+		setCurrentView(keyOfNodeBorrowViews.index);
 	};
 
 	// const updateGas = async () => {
@@ -86,8 +106,6 @@ export const NodeBorrowModal = ({
 
 		const amt = BigNumber(val).shiftedBy(appConfig.currency.decimals);
 		setAmount(amt);
-
-		// setExpectedFTokenAmount(amt.dividedBy(lendingPool.exchangeRateCurrent).plus(fTokenBalanceShifted));
 	};
 
 	const step1View = <>
@@ -101,7 +119,8 @@ export const NodeBorrowModal = ({
 
 		<ValueAndKey
 			keyStr={t("borrowable")}
-			value={globalUtils.formatBigNumber(node?.availableBalance, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+			// value={globalUtils.formatBigNumber(node?.availableBalance, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+			value={globalUtils.formatBigNumber(lendingPool?.getCash, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
 			rowDirection={true}
 			reversed={true}
 			fullWidth />
@@ -119,7 +138,8 @@ export const NodeBorrowModal = ({
 
 		<ValueAndKey
 			keyStr={t("poolAvailability")}
-			value={globalUtils.formatBigNumber(node.vestingFundSum, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+			// value={globalUtils.formatBigNumber(node.vestingFundSum, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+			value={globalUtils.formatBigNumber(lendingPool?.getCash, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
 			rowDirection={true}
 			reversed={true}
 			fullWidth />
@@ -128,7 +148,8 @@ export const NodeBorrowModal = ({
 
 		<AmountInput
 			name={t("borrowAmount")}
-			max={node.availableBalance.shiftedBy(-appConfig.currency.decimals).toNumber()}
+			// max={node.availableBalance.shiftedBy(-appConfig.currency.decimals).toNumber()}
+			max={lendingPool?.getCash.shiftedBy(-appConfig.currency.decimals).toNumber()}
 			symbol={globalUtils.fil.symbol}
 			logo={globalUtils.fil.logo}
 			onChange={handleChangeAmount}
@@ -213,6 +234,18 @@ export const NodeBorrowModal = ({
 
 	return <div className="registerNodeModalLayout">
 		{currentView === keyOfNodeBorrowViews.step1 && step1View}
+
 		{currentView === keyOfNodeBorrowViews.step2 && step2View}
+
+		{currentView === keyOfNodeBorrowViews.process && <TxSending />}
+
+		{currentView === keyOfNodeBorrowViews.done && <TxDone
+			txHash={txHash}
+			onDone={handleClose} />}
+
+		{currentView === keyOfNodeBorrowViews.error && <TxError
+			text={errMessage}
+			onCancel={handleCancel}
+		/>}
 	</div>
 };

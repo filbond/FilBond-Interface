@@ -1,6 +1,4 @@
-import { RatingLabel } from "../components/RatingLabel";
 import { appController } from "../libs/appController";
-import { MessageLabel } from "../components/MessageLabel";
 import "./NodeCard.css";
 import { globalUtils } from "../libs/globalUtils";
 import { ValueAndKey } from "../components/ValueAndKey";
@@ -18,6 +16,8 @@ export const NodeCard = ({
 	node = null,
 	chainId = 0,
 	lendingPool = null,
+	updateNode = () => { },
+	indexOfNode = -1
 }) => {
 	const t = locale.translate;
 	const [healthLevel, setHealthLevel] = useState(globalUtils.nodeHealthLevel.healthy);
@@ -40,14 +40,20 @@ export const NodeCard = ({
 		// 
 	};
 
+	const updateThisNode = () => {
+		updateNode(indexOfNode);
+	};
+
 	const handleBorrow = () => {
 		appController.showModal(<Modal>
 			<NodeBorrowModal
-				max={node?.availableBalance.multipliedBy(appConfig.maxMargin).shiftedBy(-appConfig.currency.decimals).toNumber()}
+				// max={node?.availableBalance.multipliedBy(appConfig.maxMargin).shiftedBy(-appConfig.currency.decimals).toNumber()}
+				max={lendingPool?.getCash.multipliedBy(appConfig.maxMargin).shiftedBy(-appConfig.currency.decimals).toNumber()}
 				chainId={chainId}
 				currencyBalance={currencyBalance}
 				node={node}
-				lendingPool={lendingPool} />
+				lendingPool={lendingPool}
+				onBorrow={updateThisNode} />
 		</Modal>);
 	};
 
@@ -92,12 +98,14 @@ export const NodeCard = ({
 
 		<div className="values">
 			<ValueAndKey
-				value={globalUtils.formatBigNumber(node?.vestingFundSum, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+				// value={globalUtils.formatBigNumber(node?.vestingFundSum, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+				value={globalUtils.formatBigNumber(node?.availableBalance, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
 				keyStr={t("availableLoan")}
 				alignLeft />
 
 			<ValueAndKey
-				value={globalUtils.formatBigNumber(node?.availableBalance, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+				// value={globalUtils.formatBigNumber(node?.availableBalance, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+				value={globalUtils.formatBigNumber(lendingPool?.getCash, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
 				keyStr={t("borrowable")} />
 
 			<ValueAndKey

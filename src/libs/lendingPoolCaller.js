@@ -1,10 +1,10 @@
 import { appConfig } from "../configs/appConfig";
-import { appController } from "./appController";
 import { globalUtils } from "./globalUtils";
 
 export const lendingPoolCaller = {
 	makeLendingPoolCalls: async function (chainId, account) {
 		const calls = [];
+
 		const cfg = appConfig.markets.networks[chainId].lendingPool;
 		const abi = await globalUtils.loadJson(cfg.abi);
 
@@ -53,6 +53,23 @@ export const lendingPoolCaller = {
 				}
 			]
 		});
+
+		// const compoundLensCfg = appConfig.markets.networks[chainId].compoundLens;
+		// const compoundLensAbi = await globalUtils.loadJson(compoundLensCfg.abi);
+
+		// calls.push({
+		// 	reference: 'compoundLens',
+		// 	contractAddress: compoundLensCfg.address,
+		// 	abi: compoundLensAbi,
+		// 	calls: [
+		// 		{
+		// 			reference: 'cTokenMetadataExpand',
+		// 			methodName: 'cTokenMetadataExpand',
+		// 			methodParameters: [cfg.address]
+		// 		}
+		// 	]
+		// });
+
 		// console.debug("pendingPoolCalls =", calls);
 
 		return calls;
@@ -70,6 +87,7 @@ export const lendingPoolCaller = {
 				}
 			});
 		});
+
 		console.debug("lendingPool =", lendingPool);
 	},
 	computeAPR: function (lendingPool, chainId) {
@@ -82,8 +100,6 @@ export const lendingPoolCaller = {
 		return lendingPool.earnings;
 	},
 	computeInterest: function (lendingPool) {
-		console.debug("getCash =", lendingPool.getCash.toFixed());
-
 		const utilRate = lendingPool.totalBorrowsCurrent.dividedBy(lendingPool.totalBorrowsCurrent.plus(lendingPool.getCash));
 		return utilRate.multipliedBy(lendingPool.borrowRatePerBlock.dividedBy(appConfig.currency.ethMantissa)).toNumber();
 	}

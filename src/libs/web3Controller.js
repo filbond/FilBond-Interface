@@ -137,13 +137,13 @@ export const web3Controller = {
 
 		params.gas = gas;
 
-		let txHash = "";
-		let countOfConfirmation = 0;
+		// let txHash = "";
+		// let countOfConfirmation = 0;
 		func.send(params).on('transactionHash', function (hash) {
-			txHash = hash;
+			// txHash = hash;
 			if (hashCallback) hashCallback(hash);
 		}).on('confirmation', function (confirmationNumber, receipt) {
-			countOfConfirmation = confirmationNumber;
+			// countOfConfirmation = confirmationNumber;
 			// console.debug("确认", confirmationNumber, receipt);
 		}).on('receipt', function (receipt) {
 			// console.debug("完成全部确认", receipt, doneCallback);

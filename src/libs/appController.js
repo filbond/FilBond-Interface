@@ -71,6 +71,7 @@ export const appController = {
 	},
 
 	getData: async function () {
+		// return { lendingPool: null };
 		await this.getLatestBlock();
 		await this.getLendingPool();
 		return {

@@ -169,6 +169,10 @@ export const appConfig = {
 				},
 				comptroller: {
 					address: "0xBC14511f9C9Ad1540a184311A515f228E27C10D2"
+				},
+				compoundLens: {
+					address: "0x3Dc7dE56eDbb3065D207C925E3b96F61A2a22dA5",
+					abi: "/abis/CompoundLens.json"
 				}
 			}
 		}

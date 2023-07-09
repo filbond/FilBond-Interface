@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { locale } from "../libs/locale";
 import "./AmountInput.css";
+import { debounce } from "../libs/debounce";
 
 export const AmountInput = ({
 	name = "",
@@ -14,15 +15,16 @@ export const AmountInput = ({
 	const t = locale.translate;
 	const [value, setValue] = useState(0);
 
-	const handleChange = event => {
-		const val = Number(event.currentTarget.value);
-
-		if (isNaN(val)) {
-			return;
+	const dd = val => {
+		if (!isNaN(val)) {
+			setValue(val);
+			onChange(val);
 		}
+	};
 
-		setValue(val);
-		onChange(val);
+	const handleChange = event => {
+		setValue(event.currentTarget.value);
+		debounce.run(dd, null, event.currentTarget.value);
 	};
 
 	const handleMax = _ => {
@@ -47,7 +49,7 @@ export const AmountInput = ({
 
 			<input
 				className="amountInputStyle"
-				type="number"
+				// type="number"
 				onChange={handleChange}
 				value={value} />
 

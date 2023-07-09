@@ -33,6 +33,14 @@
 	column-gap: 1em;
 }
 
+.nodesLayout .empty {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5em;
+	width: 100%;
+}
+
 .nodesLayout .noNodes {
 	display: flex;
 	justify-content: center;
