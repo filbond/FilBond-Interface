@@ -5,7 +5,7 @@ import { ValueAndKey } from "../components/ValueAndKey";
 import { appConfig } from "../configs/appConfig";
 import { useParams } from "react-router-dom";
 import { appController } from "../libs/appController";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Tooltip } from "../components/Tooltip";
 import { globalUtils } from "../libs/globalUtils";
 import { Modal } from "../components/Modal";
@@ -79,14 +79,14 @@ export const NodeDetails = ({
 		});
 	}, []);
 
-	const getNode = async () => {
+	const getNode = useCallback(async () => {
 		init();
 
 		const res = await appController.getNodeById(id);
 		setNode(res);
-	};
+	}, [id]);
 
-	const updateNodeRoles = async node => {
+	const updateNodeRoles = useCallback(async node => {
 		if (!node.roles || node.roles?.length === 0) {
 			node.roles = [{
 				role: globalUtils.nodeRole.owner,
@@ -110,7 +110,7 @@ export const NodeDetails = ({
 
 			node.sectorSize = roleRes.sectorSize;
 		}
-	};
+	}, [id]);
 
 	const updateAll = async () => {
 		await getNode();
@@ -120,19 +120,19 @@ export const NodeDetails = ({
 		if (!id || !allData || Boolean(node)) return;
 
 		getNode();
-	}, [allData, id]);
+	}, [allData, getNode, id, node]);
 
 	const updateNodeBalance = async nodeArg => {
 		const res = await appController.getNodeBalance(nodeArg.owner.hexAddress);
 		nodeArg.nodeBalance = BigNumber(res);
 	};
 
-	const updateCircleProgress = nodeArg => {
+	const updateCircleProgress = useCallback(nodeArg => {
 		// const val = nodeArg.borrowBalance.dividedBy(nodeArg.availableBalance).toNumber();
 		const val = nodeArg.borrowBalance.dividedBy(lendingPool?.getCash).toNumber();
 		theProgressCircle.set(val);
 		theProgressCircle.setText((val * 100).toFixed(0) + "%");
-	};
+	}, [lendingPool?.getCash]);
 
 	const updateTxs = async nodeArg => {
 		const res = await appController.getTxsWithNode(nodeArg);
@@ -146,7 +146,7 @@ export const NodeDetails = ({
 		updateCircleProgress(node);
 		updateTxs(node);
 		updateNodeRoles(node);
-	}, [node]);
+	}, [node, updateCircleProgress, updateNodeRoles]);
 
 	const handleReloadTxs = () => {
 		// 
@@ -193,7 +193,8 @@ export const NodeDetails = ({
 				max={currencyBalance.multipliedBy(appConfig.maxMargin).shiftedBy(-appConfig.currency.decimals).toNumber()}
 				chainId={chainId}
 				currencyBalance={currencyBalance}
-				node={node} />
+				node={node}
+				onNodeDeposit={updateAll} />
 		</Modal>);
 	};
 

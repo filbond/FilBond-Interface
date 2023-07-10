@@ -9,20 +9,21 @@ import { AmountInput } from "../components/AmountInput";
 import { globalUtils } from "../libs/globalUtils";
 import { ValueAndKey } from "../components/ValueAndKey";
 import BigNumber from "bignumber.js";
-// import { debounce } from "../libs/debounce";
 import { Link } from "../components/Link";
+import { TxSending } from "./TxSending";
+import { TxError } from "./TxError";
 
 const keyOfNodeDepositViews = {
 	step1: 0,
 	step2: 1,
-	step3: 2
+	done: 2,
+	process: 3,
+	error: 4
 };
 
 export const NodeDepositModal = ({
 	max = 0,
-	// lendingPool = null,
-	onClose = () => { },
-	chainId = 0,
+	onNodeDeposit = () => { },
 	currencyBalance = globalUtils.constants.BIGNUMBER_ZERO,
 	node = null
 }) => {
@@ -30,26 +31,32 @@ export const NodeDepositModal = ({
 	const [currentView, setCurrentView] = useState(keyOfNodeDepositViews.step1);
 	const [inputValue, setInputValue] = useState(0);
 	const [amount, setAmount] = useState(globalUtils.constants.BIGNUMBER_ZERO);
-	// const [gas, setGas] = useState(0);
-	// const fToken = lendingPool;
-	// const fTokenBalanceShifted = lendingPool.balanceOf.shiftedBy(-fToken.decimals);
-	// const lendingPoolAddress = appConfig.markets.networks[chainId].lendingPool.address;
-	// const [expectedFTokenAmount, setExpectedFTokenAmount] = useState(fTokenBalanceShifted);
 	const [nodeBalance, setNodeBalance] = useState(globalUtils.constants.BIGNUMBER_ZERO);
+	// const [txHash, setTxHash] = useState("");
+	const [errMessage, setErrMessage] = useState("");
+
+	const init = () => {
+		setInputValue(0);
+		setAmount(globalUtils.constants.BIGNUMBER_ZERO);
+		// setGas(0);
+		setNodeBalance(globalUtils.constants.BIGNUMBER_ZERO);
+		// setTxHash("");
+		setErrMessage("");
+	};
 
 	const handleDeposit = _ => {
+		setCurrentView(keyOfNodeDepositViews.process);
+
 		appController.nodeDeposit(
 			node.owner.hexAddress,
 			amount.toFixed(),
 			null,
-			() => {
-				setCurrentView(keyOfNodeDepositViews.step3);
-			},
-			null
+			() => setCurrentView(keyOfNodeDepositViews.done),
+			err => {
+				setErrMessage(err?.message);
+				setCurrentView(keyOfNodeDepositViews.error);
+			}
 		);
-
-		setInputValue(0);
-		setAmount(globalUtils.constants.BIGNUMBER_ZERO);
 	};
 
 	const handleGoBack = () => {
@@ -62,7 +69,7 @@ export const NodeDepositModal = ({
 
 	const handleClose = _ => {
 		appController.clearModal();
-		onClose();
+		onNodeDeposit();
 	};
 
 	// const updateGas = async () => {
@@ -283,9 +290,22 @@ export const NodeDepositModal = ({
 			onClick={handleClose} />
 	</>
 
+	const handleCancel = () => {
+		init();
+		setCurrentView(keyOfNodeDepositViews.index);
+	};
+
 	return <div className="registerNodeModalLayout">
 		{currentView === keyOfNodeDepositViews.step1 && step1View}
+
 		{currentView === keyOfNodeDepositViews.step2 && step2View}
-		{currentView === keyOfNodeDepositViews.step3 && step3View}
+
+		{currentView === keyOfNodeDepositViews.done && step3View}
+
+		{currentView === keyOfNodeDepositViews.process && <TxSending />}
+
+		{currentView === keyOfNodeDepositViews.error && <TxError
+			text={errMessage}
+			onCancel={handleCancel} />}
 	</div>
 };
