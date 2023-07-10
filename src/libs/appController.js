@@ -136,7 +136,7 @@ export const appController = {
 		);
 
 		if (res?.error) {
-			return 0;
+			return null;
 		} else {
 			const rawBytePower = Number(res?.result?.MinerPower?.RawBytePower);
 			const qualityAdjPower = Number(res?.result?.MinerPower?.QualityAdjPower);
@@ -272,7 +272,6 @@ export const appController = {
 		} catch (error) {
 			console.error(error);
 		}
-
 		// console.debug("取得MinerInfo", res?.result);
 
 		if (res?.result?.Owner) {

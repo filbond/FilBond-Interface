@@ -139,6 +139,13 @@ export const NodeDetails = ({
 		setTxs(res);
 	};
 
+	const updateNodeHealth = useCallback(async nodeArg => {
+		const res = await appController.getNodeHealth(id);
+		nodeArg.health = res?.health;
+		nodeArg.qualityAdjPower = res?.qualityAdjPower;
+		nodeArg.successRate = res?.successRate;
+	}, [id]);
+
 	useEffect(() => {
 		if (!node) return;
 
@@ -146,7 +153,8 @@ export const NodeDetails = ({
 		updateCircleProgress(node);
 		updateTxs(node);
 		updateNodeRoles(node);
-	}, [node, updateCircleProgress, updateNodeRoles]);
+		updateNodeHealth(node);
+	}, [node, updateCircleProgress, updateNodeHealth, updateNodeRoles]);
 
 	const handleReloadTxs = () => {
 		// 
@@ -265,7 +273,8 @@ export const NodeDetails = ({
 					type={appConfig.buttonType.primary}
 					onClick={handleBorrow}
 					padding="10px 12px"
-					fontSize="16px">
+					fontSize="16px"
+					disabled={lendingPool?.getCash.eq(0)}>
 					<img
 						src="/images/borrow_dark.png"
 						width="24px"
@@ -288,7 +297,8 @@ export const NodeDetails = ({
 				<Button
 					type={appConfig.buttonType.default}
 					onClick={handleRepay}
-					padding="10px 12px">
+					padding="10px 12px"
+					disabled={node?.borrowBalance.eq(0)}>
 					<img
 						src="/images/repay.png"
 						width="24px"
@@ -316,7 +326,8 @@ export const NodeDetails = ({
 				<Button
 					type={appConfig.buttonType.default}
 					onClick={handleNodeDeposit}
-					padding="10px 12px">
+					padding="10px 12px"
+					disabled={currencyBalance.eq(0)}>
 					<img
 						src="/images/deposit.png"
 						width="24px"
@@ -328,7 +339,8 @@ export const NodeDetails = ({
 				<Button
 					type={appConfig.buttonType.default}
 					onClick={handleWithdraw}
-					padding="10px 12px">
+					padding="10px 12px"
+					disabled={node?.nodeBalance.eq(0)}>
 					<img
 						src="/images/withdraw.png"
 						width="24px"
@@ -372,13 +384,13 @@ export const NodeDetails = ({
 						</h3>
 
 						<div className="sideBySide">
-							<Button
+							{/* <Button
 								type={appConfig.buttonType.small}
 								label={t("changeWorker")} />
 
 							<Button
 								type={appConfig.buttonType.small}
-								label={t("changeBeneficiary")} />
+								label={t("changeBeneficiary")} /> */}
 						</div>
 					</div>
 
@@ -386,9 +398,8 @@ export const NodeDetails = ({
 						{node?.roles?.map(role => {
 							if (role.hexAddress) {
 								taskManager.run(async () => {
-									// const res = await appController.getCurrencyBalance(role.hexAddress);
-									// role.balance = BigNumber(res);
-									role.balance = node?.nodeBalance;
+									const res = await appController.getCurrencyBalance(role.hexAddress);
+									role.balance = BigNumber(res);
 								});
 							} else {
 								taskManager.run(async () => {
@@ -455,16 +466,16 @@ export const NodeDetails = ({
 							reversed
 							fullWidth />
 
-						{/* <ValueAndKey
-							keyStr={t("lockedRewards")}
-							value="123 FIL"
-							rowDirection
-							reversed
-							fullWidth /> */}
-
 						<ValueAndKey
 							keyStr={t("sectorSize")}
 							value={(node?.sectorSize ? (node?.sectorSize / Math.pow(globalUtils.constants.BYTE_SCALE, 3)).toFixed(1) : "0") + " " + appConfig.sectorSizeUnit}
+							rowDirection
+							reversed
+							fullWidth />
+
+						<ValueAndKey
+							keyStr={t("lockedRewards")}
+							value={globalUtils.formatBigNumber(node?.vestingFundSum, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
 							rowDirection
 							reversed
 							fullWidth />
