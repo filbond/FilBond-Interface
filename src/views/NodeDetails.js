@@ -33,6 +33,11 @@ export const NodeDetails = ({
 	const [txs, setTxs] = useState([]);
 	const roleKeys = Object.keys(globalUtils.nodeRole);
 
+	const init = () => {
+		setNode(null);
+		setTxs([]);
+	};
+
 	const handleGoBack = _ => {
 		window.history.back();
 	}
@@ -75,8 +80,9 @@ export const NodeDetails = ({
 	}, []);
 
 	const getNode = async () => {
+		init();
+
 		const res = await appController.getNodeById(id);
-		console.debug("取得node数据", res);
 		setNode(res);
 	};
 
@@ -122,9 +128,10 @@ export const NodeDetails = ({
 	};
 
 	const updateCircleProgress = nodeArg => {
-		const val = nodeArg.borrowBalance.dividedBy(nodeArg.availableBalance).toNumber();
+		// const val = nodeArg.borrowBalance.dividedBy(nodeArg.availableBalance).toNumber();
+		const val = nodeArg.borrowBalance.dividedBy(lendingPool?.getCash).toNumber();
 		theProgressCircle.set(val);
-		theProgressCircle.setText(val.toFixed(0) + "%");
+		theProgressCircle.setText((val * 100).toFixed(0) + "%");
 	};
 
 	const updateTxs = async nodeArg => {
@@ -164,7 +171,8 @@ export const NodeDetails = ({
 				chainId={chainId}
 				currencyBalance={currencyBalance}
 				node={node}
-				lendingPool={lendingPool} />
+				lendingPool={lendingPool}
+				onBorrow={updateAll} />
 		</Modal>);
 	};
 
@@ -191,7 +199,9 @@ export const NodeDetails = ({
 
 	const handleWithdraw = () => {
 		appController.showModal(<Modal>
-			<NodeWithdrawModal node={node} />
+			<NodeWithdrawModal
+				node={node}
+				onDone={updateAll} />
 		</Modal>);
 	};
 
@@ -245,7 +255,8 @@ export const NodeDetails = ({
 						{t("borrowable")}
 						<Tooltip />
 					</>}
-					value={globalUtils.formatBigNumber(node?.availableBalance, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+					// value={globalUtils.formatBigNumber(node?.availableBalance, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+					value={globalUtils.formatBigNumber(lendingPool?.getCash, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
 					alignLeft={true}
 					reversed />
 
@@ -296,7 +307,8 @@ export const NodeDetails = ({
 			<div className="scoreBox">
 				<ValueAndKey
 					keyStr={t("nodeBalance")}
-					value={globalUtils.formatBigNumber(node?.borrowBalance, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+					// value={globalUtils.formatBigNumber(node?.borrowBalance, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+					value={globalUtils.formatBigNumber(node?.nodeBalance, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
 					alignLeft={true}
 					reversed />
 
@@ -373,8 +385,9 @@ export const NodeDetails = ({
 						{node?.roles?.map(role => {
 							if (role.hexAddress) {
 								taskManager.run(async () => {
-									const res = await appController.getCurrencyBalance(role.hexAddress);
-									role.balance = BigNumber(res);
+									// const res = await appController.getCurrencyBalance(role.hexAddress);
+									// role.balance = BigNumber(res);
+									role.balance = node?.nodeBalance;
 								});
 							} else {
 								taskManager.run(async () => {

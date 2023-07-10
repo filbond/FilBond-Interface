@@ -11,10 +11,16 @@ import { ValueAndKey } from "../components/ValueAndKey";
 import BigNumber from "bignumber.js";
 import { Tabs } from "../components/Tabs";
 import { Link } from "../components/Link";
+import { TxSending } from "./TxSending";
+import { TxDone } from "./TxDone";
+import { TxError } from "./TxError";
 
 const keyOfRepayViews = {
 	index: 0,
-	summary: 1
+	summary: 1,
+	process: 2,
+	done: 3,
+	error: 4
 };
 
 export const RepayModal = ({
@@ -30,7 +36,9 @@ export const RepayModal = ({
 	const [max, setMax] = useState(0);
 	const [repayAmount, setRepayAmount] = useState(globalUtils.constants.BIGNUMBER_ZERO);
 	const [cTokenBalance, setCTokenBalance] = useState(globalUtils.constants.BIGNUMBER_ZERO);
-	const nodeBorrowBalanceShifted = node?.borrowBalance?.shiftedBy(-appConfig.currency.decimals).toNumber() || 0;
+	const [txHash, setTxHash] = useState("");
+	const [errMessage, setErrMessage] = useState("");
+	const nodeBalanceShifted = node?.nodeBalance?.shiftedBy(-appConfig.currency.decimals).toNumber() || 0;
 	const cTokenBalanceShifted = cTokenBalance.shiftedBy(-lendingPool?.decimals).toNumber();
 	const walletBalanceShifted = walletBalance.multipliedBy(appConfig.maxMargin).shiftedBy(-appConfig.currency.decimals).toNumber();
 	const repayWithOptions = useMemo(() => [
@@ -41,20 +49,30 @@ export const RepayModal = ({
 		},
 		{
 			id: "repayTab1",
-			label: nodeBorrowBalanceShifted?.toFixed(0) + " " + appConfig.currency.symbol,
+			label: nodeBalanceShifted?.toFixed(0) + " " + appConfig.currency.symbol,
 			subLabel: t("nodeBalance")
 		},
-		{
-			id: "repayTab2",
-			label: cTokenBalanceShifted?.toFixed(0) + " " + lendingPool?.symbol,
-			subLabel: appConfig.currencyCToken.symbol
-		}
-	], [cTokenBalanceShifted, lendingPool?.symbol, nodeBorrowBalanceShifted, t, walletBalanceShifted]);
+		// {
+		// 	id: "repayTab2",
+		// 	label: cTokenBalanceShifted?.toFixed(0) + " " + lendingPool?.symbol,
+		// 	subLabel: appConfig.currencyCToken.symbol
+		// }
+	], [nodeBalanceShifted, t, walletBalanceShifted]);
+
+	const init = () => {
+		setCurrentView(keyOfRepayViews.index);
+		setIndexOfRepayWith(0);
+		setMax(0);
+		setRepayAmount(globalUtils.constants.BIGNUMBER_ZERO);
+		setCTokenBalance(globalUtils.constants.BIGNUMBER_ZERO);
+		setTxHash("");
+		setErrMessage("");
+	};
 
 	useEffect(() => {
 		switch (indexOfRepayWith) {
 			case 1:
-				setMax(nodeBorrowBalanceShifted);
+				setMax(nodeBalanceShifted);
 				break;
 
 			case 2:
@@ -65,7 +83,7 @@ export const RepayModal = ({
 				setMax(walletBalanceShifted);
 				break;
 		}
-	}, [cTokenBalanceShifted, indexOfRepayWith, nodeBorrowBalanceShifted, walletBalanceShifted]);
+	}, [cTokenBalanceShifted, indexOfRepayWith, nodeBalanceShifted, walletBalanceShifted]);
 
 	useEffect(() => {
 		if (!node) return;
@@ -96,15 +114,17 @@ export const RepayModal = ({
 	};
 
 	const handleRepay = () => {
+		setCurrentView(keyOfRepayViews.process);
+
 		let func = null;
 
 		switch (indexOfRepayWith) {
 			case 0:
-				func = appController.nodeRepayWithDeposit
+				func = appController.nodeRepayBorrow;
 				break;
 
 			case 1:
-				func = appController.nodeRepayBorrow;
+				func = appController.nodeRepayWithDeposit
 				break;
 
 			default:
@@ -115,13 +135,12 @@ export const RepayModal = ({
 
 		func(
 			node.owner.hexAddress,
-			tx => {
-				handleClose();
+			tx => setTxHash(tx),
+			() => setCurrentView(keyOfRepayViews.done),
+			err => {
+				setTxHash(err?.message);
+				setCurrentView(keyOfRepayViews.error);
 			},
-			data => {
-				if (onRepay) onRepay();
-			},
-			null,
 			repayAmount
 		);
 	};
@@ -151,8 +170,9 @@ export const RepayModal = ({
 				alignLeft />
 
 			<ValueAndKey
-				keyStr={nodeBorrowBalanceShifted.toFixed() + appConfig.currency.symbol + " + " + node.borrowBalance?.multipliedBy(appController.getFeeRate()).shiftedBy(-appConfig.currency.decimals).toFixed() + appConfig.currency.symbol}
-				value={node?.borrowBalance?.multipliedBy(appController.getFeeRate() + 1).shiftedBy(-appConfig.currency.decimals).toFixed() + appConfig.currency.symbol}
+				// keyStr={nodeBalanceShifted.toFixed() + appConfig.currency.symbol + " + " + node.borrowBalance?.multipliedBy(appController.getFeeRate()).shiftedBy(-appConfig.currency.decimals).toFixed() + appConfig.currency.symbol}
+				keyStr={globalUtils.formatBigNumber(node?.borrowBalance, appConfig.currency.decimals) + " + " + globalUtils.formatBigNumber(node.borrowBalance?.multipliedBy(appController.getFeeRate()), appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+				value={globalUtils.formatBigNumber(node?.borrowBalance?.multipliedBy(appController.getFeeRate() + 1), appConfig.currency.decimals) + " " + appConfig.currency.symbol}
 				alignRight />
 		</div>
 
@@ -276,8 +296,29 @@ export const RepayModal = ({
 			onClick={handleGoBack} />
 	</div>
 
+	const handleDone = () => {
+		appController.clearModal();
+		onRepay();
+	};
+
+	const handleCancel = () => {
+		init();
+		setCurrentView(keyOfRepayViews.index);
+	};
+
 	return <div className="registerNodeModalLayout">
 		{currentView === keyOfRepayViews.index && step1View}
+
 		{currentView === keyOfRepayViews.summary && summaryView}
+
+		{currentView === keyOfRepayViews.process && <TxSending />}
+
+		{currentView === keyOfRepayViews.done && <TxDone
+			txHash={txHash}
+			onDone={handleDone} />}
+
+		{currentView === keyOfRepayViews.error && <TxError
+			text={errMessage}
+			onCancel={handleCancel} />}
 	</div>
 };

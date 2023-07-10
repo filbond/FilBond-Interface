@@ -10,15 +10,20 @@ import { globalUtils } from "../libs/globalUtils";
 import { ValueAndKey } from "../components/ValueAndKey";
 import BigNumber from "bignumber.js";
 import { Link } from "../components/Link";
+import { TxSending } from "./TxSending";
+import { TxError } from "./TxError";
 
 const keyOfNodeWithdrawViews = {
 	step1: 0,
 	step2: 1,
-	step3: 2
+	done: 2,
+	process: 3,
+	error: 4
 };
 
 export const NodeWithdrawModal = ({
 	onClose = () => { },
+	onDone = () => { },
 	node = null
 }) => {
 	const t = locale.translate;
@@ -27,15 +32,27 @@ export const NodeWithdrawModal = ({
 	const [amount, setAmount] = useState(globalUtils.constants.BIGNUMBER_ZERO);
 	const nodeBalance = node?.nodeBalance || globalUtils.constants.BIGNUMBER_ZERO;
 	const max = nodeBalance.shiftedBy(-appConfig.currency.decimals).toNumber();
+	const [txHash, setTxHash] = useState("");
+	const [errMsg, setErrMsg] = useState("");
+
+	const init = () => {
+		setInputValue(0);
+		setAmount(globalUtils.constants.BIGNUMBER_ZERO);
+		setTxHash("");
+		setErrMsg("");
+	};
 
 	const handleWithdraw = () => {
-		appController.withdraw(
+		setCurrentView(keyOfNodeWithdrawViews.process);
+
+		appController.nodeWithdraw(
 			node.owner.hexAddress,
-			null,
-			data => {
-				setCurrentView(keyOfNodeWithdrawViews.step3);
+			tx => setTxHash(tx),
+			() => setCurrentView(keyOfNodeWithdrawViews.done),
+			err => {
+				setErrMsg(err?.message);
+				setCurrentView(keyOfNodeWithdrawViews.error);
 			},
-			null,
 			amount.toFixed()
 		);
 	};
@@ -51,6 +68,11 @@ export const NodeWithdrawModal = ({
 	const handleClose = _ => {
 		appController.clearModal();
 		onClose();
+	};
+
+	const handleDone = () => {
+		appController.clearModal();
+		onDone();
 	};
 
 	const handleChangeAmount = async val => {
@@ -127,7 +149,7 @@ export const NodeWithdrawModal = ({
 				keyStr={t("nodeBalance")}
 				value={<ValueUpdate
 					oldValue={globalUtils.formatBigNumber(nodeBalance, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
-					newValue={globalUtils.formatBigNumber(nodeBalance.plus(amount), appConfig.currency.decimals) + " " + appConfig.currency.symbol}
+					newValue={globalUtils.formatBigNumber(nodeBalance.minus(amount), appConfig.currency.decimals) + " " + appConfig.currency.symbol}
 					positive={true} />}
 				rowDirection={true}
 				reversed={true}
@@ -218,12 +240,25 @@ export const NodeWithdrawModal = ({
 			type={appConfig.buttonType.primary}
 			fullWidth
 			label={t("manageNode")}
-			onClick={handleClose} />
+			onClick={handleDone} />
 	</>
+
+	const handleCancel = () => {
+		init();
+		setCurrentView(keyOfNodeWithdrawViews.step1);
+	};
 
 	return <div className="registerNodeModalLayout">
 		{currentView === keyOfNodeWithdrawViews.step1 && step1View}
+
 		{currentView === keyOfNodeWithdrawViews.step2 && step2View}
-		{currentView === keyOfNodeWithdrawViews.step3 && step3View}
+
+		{currentView === keyOfNodeWithdrawViews.done && step3View}
+
+		{currentView === keyOfNodeWithdrawViews.process && <TxSending />}
+
+		{currentView === keyOfNodeWithdrawViews.error && <TxError
+			text={errMsg}
+			onCancel={handleCancel} />}
 	</div>
 };

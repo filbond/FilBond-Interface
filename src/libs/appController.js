@@ -361,6 +361,7 @@ export const appController = {
 			doneCallback,
 			cancelCallback,
 			null,
+			globalUtils.constants.ADDRESS0,
 			amount,
 			this._account
 		);
@@ -407,13 +408,15 @@ export const appController = {
 	},
 
 	getNodeBalance: async function (nodeAddress) {
-		const abi = await this._getLendingPoolABI();
-		return await web3Controller.callContract(
-			this._getMarketConfig(this._chainId).lendingPool.address,
-			abi,
-			"balanceOfUnderlying",
-			nodeAddress
-		);
+		// const abi = await this._getLendingPoolABI();
+		// return await web3Controller.callContract(
+		// 	this._getMarketConfig(this._chainId).lendingPool.address,
+		// 	abi,
+		// 	"balanceOfUnderlying",
+		// 	nodeAddress
+		// );
+		const res = await this.getCurrencyBalance(nodeAddress);
+		return res;
 	},
 
 	getNodeCTokenBalance: async function (nodeAddress) {
@@ -538,7 +541,8 @@ export const appController = {
 			nodesCaller.parseResults(res, tempNodes);
 
 			taskManager.run(async () => {
-				await this.getNodesHealth(tempNodes);
+				// await this.getNodesHealth(tempNodes);
+				await this.getNodeHealth(theNode);
 			});
 		}
 
