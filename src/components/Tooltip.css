@@ -1,0 +1,23 @@
+.tooltipIcon {
+	width: 10px;
+	height: 10px;
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	margin: 0 4px;
+}
+
+.tooltipContent {
+	position: absolute;
+	padding: 16px;
+	background: #2C2847;
+	border-radius: 2px;
+	width: 240px;
+	z-index: 99;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 18px;
+	letter-spacing: 0.02em;
+	color: #F7F6F9;
+}

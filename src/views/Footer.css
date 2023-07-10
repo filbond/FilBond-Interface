@@ -1,0 +1,37 @@
+.footerLayout {
+	width: 100%;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin: 1em 0;
+}
+
+.footerLayout .logo {
+	/*  */
+}
+
+.footerLayout .menu {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	column-gap: 1em;
+}
+
+.footerLayout .medias {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	column-gap: 1em;
+}
+
+.footerLayout .copyRight {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	letter-spacing: 0.02em;
+	color: #F7F6F9;
+}

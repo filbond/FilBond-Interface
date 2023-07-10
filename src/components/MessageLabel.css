@@ -1,0 +1,12 @@
+.messageLabelStyle {
+	background: #EE4082;
+	border: 1px solid #FF68A1;
+	border-radius: 8px;
+	font-family: 'Days One', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	color: #001744;
+	text-transform: capitalize;
+	padding: 4px;
+}

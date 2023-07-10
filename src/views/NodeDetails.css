@@ -1,0 +1,217 @@
+.bondDetailsLayout {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	row-gap: 24px;
+	margin: 76px 0 48px 0;
+	width: fit-content;
+}
+
+.bondDetailsLayout .scorePanel {
+	width: calc(100% - 64px);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 16px 32px;
+	background: radial-gradient(100% 478.79% at 100% -3.42%, #413B6F 0%, #2C2847 100%);
+	box-shadow: 0px 10px 10px -3px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.2);
+	border-radius: 2px;
+	gap: 56px;
+}
+
+.bondDetailsLayout .scorePanel .scoreBox {
+	width: fit-content;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 16px;
+}
+
+.bondDetailsLayout .scorePanel .scoreBox #progressCircle {
+	width: 40px;
+	height: 40px;
+}
+
+.bondDetailsLayout .scorePanel .scoreBox .veticalScore {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+}
+
+.bondDetailsLayout .scorePanel .scoreBox .veticalScore .key {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 12px;
+	letter-spacing: 0.02em;
+	color: #A5A0BB;
+}
+
+.bondDetailsLayout .scorePanel .scoreBox .divider {
+	width: 1px;
+	height: 56px;
+	background: #1E1B3D;
+}
+
+.bondDetailsLayout .bondDetailsContent {
+	margin-top: 2em;
+	width: calc(100% - 96px);
+	column-gap: 64px;
+	display: grid;
+	grid-template-columns: 65% 35%;
+}
+
+.bondDetailsLayout .bondDetailsContent .column {
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.bondDetailsLayout .bondDetailsContent .column .section {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.bondDetailsLayout .bondDetailsContent .column .section .addressesContent {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 32px;
+	flex-wrap: wrap;
+}
+
+.bondDetailsLayout .bondDetailsContent .column .section .addressesContent .addressesItem {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 8px;
+}
+
+.bondDetailsLayout .bondDetailsContent .column .section .addressesContent .addressesItem .balanceLabel {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	letter-spacing: 0.02em;
+	color: #F7F6F9;
+}
+
+.bondDetailsLayout .bondDetailsContent .column .section .addressesContent .addressesItem .roleLabel {
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14px;
+	letter-spacing: 0.02em;
+	color: #F7F6F9;
+	text-transform: capitalize;
+}
+
+.bondDetailsLayout .bondDetailsContent .column .section .addressesContent .addressesItem .idLabel {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	letter-spacing: 0.02em;
+	color: #A5A0BB;
+}
+
+.bondDetailsLayout .bondDetailsContent .column .section .values {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 16px;
+	gap: 12px;
+	width: 100%;
+	background: radial-gradient(100% 478.79% at 100% -3.42%, #413B6F 0%, #2C2847 100%);
+	box-shadow: 0px 10px 10px -3px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.bondDetailsLayout .bondDetailsContent .column .section .titleLine {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.bondDetailsLayout .bondDetailsContent .column .section .titleLine .side {
+	column-gap: 1em;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.bondDetailsLayout .bondDetailsContent .nodes {
+	width: 100%;
+	display: grid;
+	grid-template-columns: auto auto;
+	row-gap: 1em;
+	column-gap: 1em;
+}
+
+.bondDetailsLayout .bondDetailsContent .investmentPanel {
+	background: #052A61;
+	border-radius: 16px;
+	padding: 1em;
+	margin-top: 1em;
+}
+
+.bondDetailsLayout .bondDetailsContent .investmentPanel .labels {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin-bottom: 1em;
+}
+
+.bondDetailsLayout .bondDetailsContent .value {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 0.5em;
+}
+
+.bondDetailsLayout .bondDetailsContent .value .orange {
+	color: #E38723;
+	-webkit-text-stroke: #FEA047 1px;
+}
+
+.bondDetailsLayout .bondDetailsContent .value .violet {
+	color: #EE4082;
+	-webkit-text-stroke: #FF68A1 1px;
+}
+
+.bondDetailsLayout .bondDetailsContent .value .pink {
+	color: #FFBED7;
+	-webkit-text-stroke: #FFE4EE 1px;
+}
+
+.bondDetailsLayout .bondDetailsContent .value .blue {
+	color: #07A6EE;
+	-webkit-text-stroke: #3FC2FF 1px;
+}
+
+.bondDetailsLayout .bondDetailsContent .value .key {
+	vertical-align: middle;
+	text-transform: capitalize;
+	font-family: 'Rubik', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	color: #ABB7CA;
+}
+
+.bondDetailsLayout .bondDetailsContent .value .val {
+	font-family: 'Rubik', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	text-align: right;
+	color: #F8FAFF;
+}

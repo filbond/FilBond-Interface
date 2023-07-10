@@ -1,0 +1,77 @@
+{
+	"nodes": [
+		{
+			"id": "node0",
+			"status": 0,
+			"rating": 0,
+			"title": "f20832654",
+			"availableFunds": "8880000000000000000",
+			"bondsIssued": "1234567890123456789",
+			"bondsIssuable": "80000000000000000",
+			"bonds": [
+				"whoami",
+				"whoami4"
+			]
+		},
+		{
+			"id": "node1",
+			"status": 1,
+			"rating": 0,
+			"title": "f20832654",
+			"availableFunds": "8880000000000000000",
+			"bondsIssued": "1234567890123456789",
+			"bondsIssuable": "80000000000000000",
+			"bonds": []
+		},
+		{
+			"id": "node2",
+			"status": 1,
+			"rating": 0,
+			"title": "f20832654",
+			"availableFunds": "8880000000000000000",
+			"bondsIssued": "1234567890123456789",
+			"bondsIssuable": "80000000000000000",
+			"bonds": []
+		},
+		{
+			"id": "node3",
+			"status": 1,
+			"rating": 0,
+			"title": "f20832654",
+			"availableFunds": "8880000000000000000",
+			"bondsIssued": "1234567890123456789",
+			"bondsIssuable": "80000000000000000",
+			"bonds": []
+		},
+		{
+			"id": "node4",
+			"status": 1,
+			"rating": 0,
+			"title": "f20832654",
+			"availableFunds": "8880000000000000000",
+			"bondsIssued": "1234567890123456789",
+			"bondsIssuable": "80000000000000000",
+			"bonds": []
+		},
+		{
+			"id": "node5",
+			"status": 1,
+			"rating": 0,
+			"title": "f20832654",
+			"availableFunds": "8880000000000000000",
+			"bondsIssued": "1234567890123456789",
+			"bondsIssuable": "80000000000000000",
+			"bonds": []
+		},
+		{
+			"id": "node6",
+			"status": 1,
+			"rating": 0,
+			"title": "f20832654",
+			"availableFunds": "8880000000000000000",
+			"bondsIssued": "1234567890123456789",
+			"bondsIssuable": "80000000000000000",
+			"bonds": []
+		}
+	]
+}

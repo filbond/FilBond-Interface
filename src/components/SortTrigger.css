@@ -1,0 +1,26 @@
+.sortTriggerLayout {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.5em;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	letter-spacing: 0.02em;
+	text-transform: capitalize;
+}
+
+.sortTriggerLayout select {
+	padding: 8px 10px 8px 12px;
+	background: radial-gradient(100% 599.48% at 100% 0%, #4C4577 0%, #413B6F 100%);
+	box-shadow: 0px 10px 10px -3px rgba(0, 0, 0, 0.1), 0px 2px 2px rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+	border: none;
+	outline: none;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+	letter-spacing: 0.02em;
+	color: #CCB7F8;
+	text-transform: capitalize;
+}

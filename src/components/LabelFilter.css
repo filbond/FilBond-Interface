@@ -1,0 +1,35 @@
+.labelFilterLayout {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	row-gap: 0.5em;
+}
+
+.labelFilterLayout .labelFilterContent {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	column-gap: 0.5em;
+}
+
+.labelFilterLayout .labelFilterContent .label {
+	background: linear-gradient(0deg, rgba(227, 85, 255, 0.1), rgba(227, 85, 255, 0.1)), linear-gradient(180deg, #08326D 0%, #0E4281 100%);
+	border: 1px solid #32578A;
+	box-shadow: inset 0px 0px 0px 8px rgba(232, 235, 243, 0.03);
+	border-radius: 12px;
+	padding: 8px 12px;
+	font-family: 'Days One', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+.labelFilterLayout .labelFilterContent .active {
+	background: linear-gradient(221.16deg, rgba(37, 180, 255, 0.6) 1.63%, rgba(93, 91, 255, 0.6) 51.7%, rgba(199, 36, 255, 0.6) 105.55%);
+	box-shadow: inset 0px 0px 0px 8px rgba(232, 235, 243, 0.03);
+}

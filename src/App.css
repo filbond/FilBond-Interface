@@ -1,38 +1,110 @@
 .App {
-  text-align: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin: 36px 1em;
+}
+
+.appContainer .viewContainer {
+  width: 100%;
+  display: flex;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+}
+
+#modalContainer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.steppedViewCount {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  text-transform: capitalize;
+  color: #F7F6F9;
+}
+
+.modalText {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.02em;
+  color: #F7F6F9;
+}
+
+.sideBySide {
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.popupMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px;
+  background: radial-gradient(100% 478.79% at 100% -3.42%, #413B6F 0%, #2C2847 100%);
+  box-shadow: 0px 10px 10px -3px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.popupMenu .popupMenuItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 8px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: #CCB7F8;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.elementAsButton {
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  /*  */
+}
+
+@media (prefers-color-scheme: light) {
+  /*  */
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
+	.loadingAnime {
+		animation: App-logo-spin infinite 1s linear;
+	}
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
 }

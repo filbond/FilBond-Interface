@@ -1,0 +1,36 @@
+.investLayout {
+	width: fit-content;
+	margin: 60px 0;
+	display: flex;
+	flex-direction: column;
+	row-gap: 40px;
+	min-width: 480px;
+	width: fit-content;
+}
+
+.investLayout .titleBar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.investLayout .titleBar .labels {
+	display: flex;
+	flex-direction: row;
+	width: fit-content;
+	align-items: center;
+	column-gap: 24px;
+
+}
+
+.investLayout .description {
+	text-align: center;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	text-align: center;
+	letter-spacing: 0.02em;
+	color: #A5A0BB;
+	margin-top: 4px;
+}

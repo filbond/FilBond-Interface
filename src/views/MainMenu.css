@@ -1,0 +1,16 @@
+.mainMenuLayout {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: fit-content;
+	column-gap: 1em;
+}
+
+.mainMenuLayout .menuitem {
+	font-size: 16px;
+	text-transform: capitalize;
+	cursor: pointer;
+	font-weight: 700;
+	font-size: 16px;
+}

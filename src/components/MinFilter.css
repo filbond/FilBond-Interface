@@ -1,0 +1,23 @@
+.minFilterLayout {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	row-gap: 0.5em;
+}
+
+.minFilterLayout input {
+	outline: none;
+	background: linear-gradient(180deg, rgba(82, 110, 152, 0) 0%, rgba(82, 110, 152, 0.1) 100%), linear-gradient(0deg, #001744, #001744), linear-gradient(180deg, #001744 0%, #042158 100%);
+	border-radius: 12px;
+	font-family: 'Rubik', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	color: #ABB7CA;
+	padding: 12px;
+	border: 1px solid rgba(37, 180, 255, 0.1);
+	appearance: textfield;
+	width: 100px;
+	text-align: right;
+}

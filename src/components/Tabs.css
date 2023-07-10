@@ -1,0 +1,64 @@
+.tabsLayout {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 8px;
+}
+
+.tabsLayout .tab {
+	flex: 1 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.tabsLayout .tab input {
+	display: none;
+}
+
+.tabsLayout .tab label {
+	cursor: pointer;
+	padding: 8px;
+	background: radial-gradient(100% 599.48% at 100% 0%, #4C4577 0%, #413B6F 100%);
+	box-shadow: 0px 10px 10px -3px rgba(0, 0, 0, 0.1), 0px 2px 2px rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.tabsLayout .tab label :first-child {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	text-align: center;
+	letter-spacing: 0.02em;
+	color: #F7F6F9;
+}
+
+.tabsLayout .tab label :last-child {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 12px;
+	text-align: center;
+	letter-spacing: 0.02em;
+	color: #A5A0BB;
+	text-transform: capitalize;
+}
+
+.tabsLayout .tab input:checked+label {
+	background: radial-gradient(100% 592% at 100% 0%, #CCB7F8 0%, #B292F4 100%);
+	box-shadow: 0px 10px 10px -3px rgba(0, 0, 0, 0.1), 0px 2px 2px rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+}
+
+.tabsLayout .tab input:checked+label :first-child {
+	color: #1E1B3D;
+}
+
+.tabsLayout .tab input:checked+label :last-child {
+	color: #1E1B3D;
+}
