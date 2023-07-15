@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "../components/Button";
 import { Modal } from "../components/Modal";
-import { SortTrigger } from "../components/SortTrigger";
+// import { SortTrigger } from "../components/SortTrigger";
 import { PopupMenu } from "../components/PopupMenu";
 import { appConfig } from "../configs/appConfig";
 import { appController } from "../libs/appController";
@@ -25,12 +25,14 @@ export const Nodes = ({
 	const [showPopupMenu, setShowPopupMenu] = useState(false);
 	const hasNodesSaved = appController.hasNodesStored();
 	const modalData = { chainId, account };
+	const [totalDebt, setTotalDebt] = useState(globalUtils.constants.BIGNUMBER_ZERO);
+	const [totalLoanAvailabled, setTotalLoadAvailabled] = useState(globalUtils.constants.BIGNUMBER_ZERO);
 
 	useEffect(() => {
 		if (chainId > 0) {
 			const saved = appController.loadNodesFromLocalStorage();
 
-			if (saved) {
+			if (saved?.length > 0) {
 				setNodes([]);
 
 				appController.getNodesData(res => {
@@ -39,6 +41,20 @@ export const Nodes = ({
 			}
 		}
 	}, [chainId]);
+
+	useEffect(() => {
+		setTotalDebt(globalUtils.constants.BIGNUMBER_ZERO);
+		setTotalLoadAvailabled(globalUtils.constants.BIGNUMBER_ZERO);
+
+		let tempTotalDebt = globalUtils.constants.BIGNUMBER_ZERO;
+		let tempTotalLoan = globalUtils.constants.BIGNUMBER_ZERO;
+		nodes?.forEach(node => {
+			tempTotalDebt = tempTotalDebt.plus(node.borrowBalance);
+			tempTotalLoan = tempTotalLoan.plus(node.availableBalance);
+		});
+		setTotalDebt(tempTotalDebt);
+		setTotalLoadAvailabled(tempTotalLoan)
+	}, [nodes]);
 
 	const handleCloseRegisterNode = () => {
 		setRegistering(false);
@@ -138,27 +154,27 @@ export const Nodes = ({
 				gap: "17px"
 			}}>
 				<ValueAndKey
-					keyStr={<>Tot. Borrowable<Tooltip /></>}
-					value="8,888.88 FIL"
+					keyStr={<>{t("totBorrowable")}<Tooltip /></>}
+					value={globalUtils.formatBigNumber(lendingPool?.getCash, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
 					alignLeft={true}
 					icon="/images/borrow.png" />
 
 				<ValueAndKey
-					keyStr={<>Total Debt<Tooltip /></>}
-					value="8,888.88 FIL"
+					keyStr={<>{t("totalDebt")}<Tooltip /></>}
+					value={globalUtils.formatBigNumber(totalDebt, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
 					alignLeft={true}
 					icon="/images/debt.png" />
 
 				<ValueAndKey
-					keyStr={<>Tot. Loan Available<Tooltip /></>}
-					value="8,888.88 FIL"
+					keyStr={<>{t("totLoanAvailabled")}<Tooltip /></>}
+					value={globalUtils.formatBigNumber(totalLoanAvailabled, appConfig.currency.decimals) + " " + appConfig.currency.symbol}
 					alignLeft={true}
 					icon="/images/loan.png" />
 			</div>
 
-			<SortTrigger
+			{/* <SortTrigger
 				title={t("sortBy")}
-				options={appConfig.sortNodesBy} />
+				options={appConfig.sortNodesBy} /> */}
 		</div>
 
 		{!nodes && <div className="noNodes">
