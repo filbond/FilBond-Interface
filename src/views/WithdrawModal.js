@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "../components/Button";
 import { ValueUpdate } from "../components/ValueUpdate";
 import { appConfig } from "../configs/appConfig";

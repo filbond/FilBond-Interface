@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { appController } from './libs/appController';
@@ -50,18 +50,18 @@ function App() {
     }
   };
 
-  const turnTimerOn = () => {
+  const turnTimerOn = useCallback(() => {
     updatingTimer = setInterval(async () => {
       await updateData();
     }, 15000);
-  };
+  }, []);
 
-  const updateWeb3 = eventObject => {
+  const updateWeb3 = useCallback(() => {
     turnTimerOff();
     turnTimerOn()
-  };
+  }, [turnTimerOn]);
 
-  const checkNetwork = async networkSupported => {
+  const checkNetwork = useCallback(async networkSupported => {
     console.debug("checkNetwork()", networkSupported);
 
     if (networkSupported) {
@@ -72,9 +72,9 @@ function App() {
         await appController.switchNetwork(appConfig.defaultNetwork);
       }
     }
-  };
+  }, [t, turnTimerOn]);
 
-  const init = async () => {
+  const init = useCallback(async () => {
     turnTimerOff();
 
     setInitiated(await locale.init());
@@ -87,11 +87,11 @@ function App() {
       networkSupported = await appController.init();
     }
     checkNetwork(networkSupported);
-  };
+  }, [checkNetwork, updateWeb3]);
 
   useEffect(() => {
     init();
-  }, []);
+  }, [init]);
 
   const handleConnectWallet = async () => {
     // setAccount(appController.account);

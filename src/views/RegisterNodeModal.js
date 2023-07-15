@@ -103,7 +103,7 @@ export const RegisterNodeModal = ({
 		}
 
 		setCli("lotus-miner actor set-owner --really-do-it " + ownerFilAddress + " " + oldOwnerIdAddress);
-	}, [ownerFilAddress]);
+	}, [oldOwnerIdAddress, ownerFilAddress]);
 
 	const handleRegAnother = () => {
 		init();
@@ -441,7 +441,7 @@ export const RegisterNodeModal = ({
 		return () => {
 			cp.destroy();
 		};
-	}, []);
+	}, [cli, t]);
 
 	const step1View = <div className="modalContent">
 		<div>
