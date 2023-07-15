@@ -182,5 +182,7 @@
 	"txSuccessful": "The transaction was successful!",
 	"transaction": "transaction",
 	"txError": "Something happened while confirming the transaction, and please try again.",
-	"waitingForNodesConfirmation": "Waiting for the nodes' confirmation"
+	"waitingForNodesConfirmation": "Waiting for the nodes' confirmation",
+	"totBorrowable": "Tot. Borrowable",
+	"totLoanAvailabled": "Tot. Loan Available"
 }
