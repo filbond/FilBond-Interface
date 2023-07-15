@@ -28,7 +28,7 @@ const Invest = ({
 
 		setApr(lendingPoolCaller.computeAPR(lendingPool, chainId));
 		setEarnings(lendingPoolCaller.computeEarnings(lendingPool));
-	}, [data, chainId]);
+	}, [data, chainId, lendingPool]);
 
 	const handleDeposit = () => {
 		appController.showModal(<Modal>

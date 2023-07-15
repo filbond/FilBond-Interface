@@ -32,13 +32,13 @@ export const NodeWithdrawModal = ({
 	const [amount, setAmount] = useState(globalUtils.constants.BIGNUMBER_ZERO);
 	const nodeBalance = node?.nodeBalance || globalUtils.constants.BIGNUMBER_ZERO;
 	const max = nodeBalance.shiftedBy(-appConfig.currency.decimals).toNumber();
-	const [txHash, setTxHash] = useState("");
+	// const [txHash, setTxHash] = useState("");
 	const [errMsg, setErrMsg] = useState("");
 
 	const init = () => {
 		setInputValue(0);
 		setAmount(globalUtils.constants.BIGNUMBER_ZERO);
-		setTxHash("");
+		// setTxHash("");
 		setErrMsg("");
 	};
 
@@ -47,7 +47,9 @@ export const NodeWithdrawModal = ({
 
 		appController.nodeWithdraw(
 			node.owner.hexAddress,
-			tx => setTxHash(tx),
+			tx => {
+				// setTxHash(tx);
+			},
 			() => setCurrentView(keyOfNodeWithdrawViews.done),
 			err => {
 				setErrMsg(err?.message);

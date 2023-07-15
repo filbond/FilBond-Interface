@@ -1,4 +1,3 @@
-import { LabelWithBackground } from "../components/LabelWithBackground";
 import { MainMenu } from "../views/MainMenu";
 import { Selector } from "../components/Selector";
 import "./TitleBar.css";

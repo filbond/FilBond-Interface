@@ -176,7 +176,7 @@ export const UnregisterNodeModal = ({
 		return () => {
 			cp.destroy();
 		};
-	}, []);
+	}, [cli, t]);
 
 	const step1View = <div className="modalContent">
 		<div>

@@ -22,7 +22,7 @@ export const PopupMenu = ({
 		if (show) {
 			setShow(false);
 		}
-	}, [trigger]);
+	}, [show, trigger]);
 
 	return <div
 		className="popupMenuLayout"

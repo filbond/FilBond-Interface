@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "../components/Button";
 import { ValueUpdate } from "../components/ValueUpdate";
 import { appConfig } from "../configs/appConfig";
@@ -78,16 +78,16 @@ export const DepositModal = ({
 		setCurrentView(keyOfDepositViews.index);
 	};
 
-	const updateGas = async () => {
+	const updateGas = useCallback(async () => {
 		const g = await appController.computeTxGas(lendingPoolAddress, lendingPool?.abi, "mint", amount.toFixed());
 		if (!isNaN(g)) {
 			setGas(g);
 		}
-	};
+	}, [amount, lendingPool?.abi, lendingPoolAddress]);
 
 	useEffect(() => {
 		debounce.run(updateGas);
-	}, [amount]);
+	}, [amount, updateGas]);
 
 	const handleChangeAmount = async val => {
 		setInputValue(val);
